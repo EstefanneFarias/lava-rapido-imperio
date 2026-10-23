@@ -1,0 +1,58 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lava-Rápido Império</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename= 'css/style.css') }}">
+
+</head>
+<body>
+
+    <header>
+        <h1>Lava-Rápido Império</h1>
+        <p>Sistema de controle</p>
+    </header>
+
+    <main>
+         <!-- Conteúdo principal da página -->
+
+        <section>
+            <!-- Seção que apresenta o resumo do dia -->
+
+            <h2>Resumo do dia</h2>
+
+    <div class="resumo-cards">
+        <div class="card">
+            <h3>Serviços realizados</h3>
+            <p>0</p>
+        </div>
+
+        <div class="card">
+            <h3>Total recebido</h3>
+            <p>R$ 0,00</p>
+        </div>
+    </div>
+
+        </section>
+
+        <section>
+            <h2>Operações</h2>
+
+            <a href="{{ url_for('registrar_servico') }}" class="botao">
+    Registrar serviço
+</a>
+
+           <a href="{{ url_for('registrar_despesas') }}" class="botao">
+    Registrar despesas
+</a>
+
+            <button type="button">Histórico de serviços</button>
+        </section>
+
+    </main>
+
+
+</body>
+</html>

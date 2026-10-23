@@ -1,0 +1,83 @@
+
+/* Estilo geral da página */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f6f8;
+    color: #222222;
+    margin: 0;
+    padding: 20px;
+}
+
+/* Cabeçalho da página */
+header {
+    background-color: #ffffff;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+}
+
+/* Cartões do resumo do dia */
+.card {
+    background-color: #ffffff;
+    padding: 20px;
+    margin-bottom: 15px;
+    border-radius: 8px;
+}
+
+/* Organiza os cartões lado a lado */
+.resumo-cards {
+    display: flex;
+    gap: 15px;
+}
+
+/* Estilo dos botões e do link com aparência de botão */
+button,
+.botao {
+    display: inline-block;
+    background-color: #2563EB;
+    color: #ffffff;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 8px;
+    font-size: 16px;
+    font-family: Arial, sans-serif;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* Efeito ao passar o mouse */
+button:hover,
+.botao:hover {
+    background-color: #1D4ED8;
+}
+
+/* Formulário */
+form {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 8px;
+    max-width: 500px;
+}
+
+/* Rótulos dos campos */
+label {
+    display: block;
+    margin-top: 15px;
+    margin-bottom: 6px;
+}
+
+/* Campos de texto e seleção */
+input,
+select {
+    box-sizing: border-box;
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #cccccc;
+    border-radius: 6px;
+    font-size: 16px;
+}
+
+/* Botão dentro do formulário */
+form button {
+    margin-top: 20px;
+}
