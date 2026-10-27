@@ -51,6 +51,13 @@ button:hover,
     background-color: #1D4ED8;
 }
 
+button:active,
+.botao:active {
+    background-color: #1E40AF;
+    transform: scale(0.98);
+}
+
+
 /* Formulário */
 form {
     background-color: #ffffff;
@@ -80,4 +87,17 @@ select {
 /* Botão dentro do formulário */
 form button {
     margin-top: 20px;
+}
+
+/* Remove as setinhas dos campos numéricos no Chrome, Edge e Safari */
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* Remove as setinhas no Firefox */
+input[type="number"] {
+    -moz-appearance: textfield;
+    appearance: textfield;
 }

@@ -13,8 +13,79 @@
         <p>Registrar despesas</p>
     </header>
 
+    
     <main>
         <a href="{{ url_for('inicio') }}">Voltar</a>
+
+        <h2>Nova despesa</h2>
+
+{% if salvo == "1" %}
+    <p class="mensagem-sucesso">Despesa registrada com sucesso!</p>
+{% endif %}
+
+        <form action="{{ url_for('registrar_despesas') }}" method="POST">
+
+            <label for="data">Data:</label>
+            <input
+    type="date"
+    id="data"
+    name="data"
+    value="{{ hoje }}"
+    required
+>
+
+            <label for="categoria">Categoria:</label>
+            <select id="categoria" name="categoria" required>
+                <option value="">Selecione uma categoria</option>
+                <option value="Café">Café</option>
+                <option value="Produtos">Produtos</option>
+                <option value="Equipamentos e manutenção">Equipamentos e manutenção</option>
+                <option value="Diárias">Diárias</option>
+                <option value="Outros">Outros</option>
+            </select>
+
+            <label for="descricao">Descrição:</label>
+            <input
+                type="text"
+                id="descricao"
+                name="descricao"
+                placeholder="Ex.: compra de pão e café"
+                required
+            >
+
+            <label for="valor">Valor (R$):</label>
+           <input
+    type="text"
+    id="valor"
+    name="valor"
+    inputmode="numeric"
+    placeholder="0,00"
+    autocomplete="off"
+    required
+>
+
+            <button type="submit">Salvar despesa</button>
+        </form>
+
+        
+    <script>
+        const campoValor = document.getElementById("valor");
+
+        campoValor.addEventListener("input", function () {
+            // Pega apenas os números digitados
+            let numeros = campoValor.value.replace(/\D/g, "");
+
+            // Converte os números para reais e centavos
+            let valor = (Number(numeros) / 100).toFixed(2);
+
+            // Troca o ponto por vírgula
+            campoValor.value = valor.replace(".", ",");
+        });
+    </script>
+
+
     </main>
+
+
 </body>
 </html>
