@@ -36,9 +36,22 @@ def registrar_despesas():
         conexao.commit()
         conexao.close()
         return redirect(url_for("registrar_despesas", salvo=1))
+
+    conexao = sqlite3.connect("lava_rapido.db")
+    cursor = conexao.cursor()
+
+    cursor.execute("""
+        SELECT data, categoria, descricao, valor
+        FROM despesas
+        ORDER BY data DESC, rowid DESC
+    """)
+
+    despesas = cursor.fetchall()
+    conexao.close()
         
     hoje = date.today().isoformat()
-    return render_template("registrar_despesas.html", hoje=hoje, salvo=request.args.get("salvo"))
+
+    return render_template("registrar_despesas.html", hoje=hoje, salvo=request.args.get("salvo"), despesas=despesas)
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5000, debug=True)

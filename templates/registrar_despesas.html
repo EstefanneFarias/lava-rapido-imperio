@@ -68,6 +68,26 @@
         </form>
 
         
+
+        <h2>Despesas cadastradas</h2>
+
+        {% if despesas %}
+            <ul>
+                {% for despesa in despesas %}
+                    <li>
+                        <strong>Data:</strong> {{ despesa[0] }} |
+                        <strong>Categoria:</strong> {{ despesa[1] }} |
+                        <strong>Descrição:</strong> {{ despesa[2] }} |
+                        <strong>Valor:</strong> R$ {{ "%.2f"|format(despesa[3] / 100)|replace(".", ",") }}
+                    </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>Nenhuma despesa cadastrada.</p>
+        {% endif %}
+
+
+
     <script>
         const campoValor = document.getElementById("valor");
 
