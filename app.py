@@ -3,8 +3,13 @@ from flask import Flask, render_template, request, redirect, url_for
 from datetime import date
 import sqlite3
 from decimal import Decimal, InvalidOperation
+from contextlib import closing
 
 app = Flask(__name__)
+
+
+def conectar_banco():
+    return closing(sqlite3.connect("lava_rapido.db"))
 
 
 @app.route("/")
@@ -45,45 +50,42 @@ def registrar_despesas():
                 erro="Informe um valor válido e maior que zero."
             )
 
-        conexao = sqlite3.connect("lava_rapido.db")
-        cursor = conexao.cursor()
+        # Salva a despesa no banco de dados
+        with conectar_banco() as conexao:
+            cursor = conexao.cursor()
 
-        cursor.execute("""
-            INSERT INTO despesas (data, categoria, descricao, valor)
-            VALUES (?, ?, ?, ?)
-        """, (data, categoria, descricao, valor_centavos))
+            cursor.execute("""
+                INSERT INTO despesas (data, categoria, descricao, valor)
+                VALUES (?, ?, ?, ?)
+            """, (data, categoria, descricao, valor_centavos))
 
-        conexao.commit()
-        conexao.close()
+            conexao.commit()
 
         return redirect(url_for("registrar_despesas", salvo=1))
 
     # Define a data consultada; se nenhuma for informada, usa hoje
     data_consulta = request.args.get("data", date.today().isoformat())
 
-    conexao = sqlite3.connect("lava_rapido.db")
-    cursor = conexao.cursor()
+    # Consulta as despesas e calcula o total
+    with conectar_banco() as conexao:
+        cursor = conexao.cursor()
 
-    # Consulta somente as despesas da data escolhida
-    cursor.execute("""
-        SELECT data, categoria, descricao, valor
-        FROM despesas
-        WHERE data = ?
-        ORDER BY rowid DESC
-    """, (data_consulta,))
+        cursor.execute("""
+            SELECT data, categoria, descricao, valor
+            FROM despesas
+            WHERE data = ?
+            ORDER BY rowid DESC
+        """, (data_consulta,))
 
-    despesas = cursor.fetchall()
+        despesas = cursor.fetchall()
 
-    # Calcula o total das despesas da data escolhida
-    cursor.execute("""
-        SELECT SUM(valor)
-        FROM despesas
-        WHERE data = ?
-    """, (data_consulta,))
+        cursor.execute("""
+            SELECT SUM(valor)
+            FROM despesas
+            WHERE data = ?
+        """, (data_consulta,))
 
-    total_despesas = cursor.fetchone()[0] or 0
-
-    conexao.close()
+        total_despesas = cursor.fetchone()[0] or 0
 
     hoje = date.today().isoformat()
 
