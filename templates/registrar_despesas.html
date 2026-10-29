@@ -67,7 +67,30 @@
             <button type="submit">Salvar despesa</button>
         </form>
 
-        
+<section class="card">
+    <h2>Fechamento diário de despesas</h2>
+
+    <form method="GET" action="{{ url_for('registrar_despesas') }}">
+
+        <label for="data-consulta">Consultar despesas por data:</label>
+
+        <input
+            type="date"
+            id="data-cansulta"
+            name="data"
+            value="{{ data_consulta }}"
+            required
+        >
+
+        <button type="submit">Consultar</button>
+    </form>
+
+    <p>
+        <strong>Total de despesas:</strong>
+        R$ {{ "%.2f"|format(total_despesas / 100)|replace(".", ",") }}
+    </p>
+</section>        
+
 
         <h2>Despesas cadastradas</h2>
 
