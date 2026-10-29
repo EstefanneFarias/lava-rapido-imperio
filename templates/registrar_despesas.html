@@ -23,6 +23,10 @@
     <p class="mensagem-sucesso">Despesa registrada com sucesso!</p>
 {% endif %}
 
+{% if erro %}
+    <p class="mensagem-erro">{{ erro }}</p>
+{% endif %} 
+
         <form action="{{ url_for('registrar_despesas') }}" method="POST">
 
             <label for="data">Data:</label>

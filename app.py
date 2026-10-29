@@ -2,7 +2,7 @@
 from flask import Flask, render_template, request, redirect, url_for
 from datetime import date
 import sqlite3
-from decimal import Decimal
+from decimal import Decimal, InvalidOperation
 
 app = Flask(__name__)
 
@@ -23,10 +23,27 @@ def registrar_despesas():
         data = request.form["data"]
         categoria = request.form["categoria"]
         descricao = request.form["descricao"]
-        valor = request.form["valor"]
 
-        valor = Decimal(valor.replace(",", "."))
-        valor_centavos = int(valor * 100)
+        try:
+            valor = Decimal(request.form["valor"].replace(",", "."))
+
+            if not valor.is_finite() or valor <= 0:
+                raise InvalidOperation
+
+            valor_centavos = int(valor * 100)
+
+        except InvalidOperation:
+            hoje = date.today().isoformat()
+
+            return render_template(
+                "registrar_despesas.html",
+                hoje=hoje,
+                salvo=None,
+                despesas=[],
+                data_consulta=hoje,
+                total_despesas=0,
+                erro="Informe um valor válido e maior que zero."
+            )
 
         conexao = sqlite3.connect("lava_rapido.db")
         cursor = conexao.cursor()
