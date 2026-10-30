@@ -22,6 +22,18 @@ def registrar_servico():
     return render_template("registrar_servico.html")
 
 
+def converter_valor_centavos(valor_digitado):
+    # Converte o valor informado para número decimal
+    valor = Decimal(valor_digitado.replace(",", "."))
+
+    # Verifica se o valor é válido e maior que zero
+    if not valor.is_finite() or valor <= 0:
+        raise InvalidOperation
+
+    # Converte reais para centavos
+    return int(valor * 100)
+
+
 @app.route("/registrar-despesas", methods=["GET", "POST"])
 def registrar_despesas():
     if request.method == "POST":
@@ -30,13 +42,9 @@ def registrar_despesas():
         descricao = request.form["descricao"]
 
         try:
-            valor = Decimal(request.form["valor"].replace(",", "."))
-
-            if not valor.is_finite() or valor <= 0:
-                raise InvalidOperation
-
-            valor_centavos = int(valor * 100)
-
+            valor_centavos = converter_valor_centavos(
+                request.form["valor"]
+            )
         except InvalidOperation:
             hoje = date.today().isoformat()
 
