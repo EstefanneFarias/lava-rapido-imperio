@@ -1,117 +1,169 @@
 
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registrar serviço</title>
 
-    <link rel="stylesheet" href="{{ url_for('static',filename='css/style.css')}}">
+    <title>Registrar serviço | Lava-Rápido Império</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+    <!-- Biblioteca de ícones -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
 </head>
-<body>
+
+<body class="pagina-inicial">
+
+    <!-- CABEÇALHO -->
+    <header class="cabecalho-inicial">
+
+        <div class="marca">
+
+            <div class="marca-icone">
+                <i class="bi bi-droplet-fill"></i>
+            </div>
+
+            <div>
+                <h1>Lava-Rápido Império</h1>
+                <p>Sistema de gerenciamento</p>
+            </div>
+
+        </div>
+
+        <div class="mensagem-boas-vindas">
+            <h2>Registrar novo serviço</h2>
+            <p>Cadastre os dados do veículo e do atendimento.</p>
+        </div>
+
+    </header>
 
 
-<header>
-    <h1>Lava-Rápido Império</h1>
-    <p>Registrar serviço</p>
-</header>
+    <main>
 
-<main>
-   <a href="{{ url_for('inicio') }}" class="botao">Voltar</a>
-    <h2>Novo serviço</h2>
-
-
-    {% if salvo == "1" %}
-    <div class="mensagem-sucesso">
-        <span>✓ Serviço registrado com sucesso!</span>
-        <button type="button"
-            onclick="this.parentElement.remove()"
-            aria-label="Fechar mensagem">×</button>
-    </div>
-{% endif %}
-
-{% if erro %}
-    <p class="mensagem-erro">{{ erro }}</p>
-{% endif %}
-
-    
-<form action="{{ url_for('registrar_servico') }}" method="POST">
+        <!-- VOLTAR -->
+        <a href="{{ url_for('inicio') }}" class="botao">
+            <i class="bi bi-arrow-left"></i>
+            Voltar
+        </a>
 
 
-    <label for="veiculo">Nome do veículo:
-    </label>
+        <!-- FORMULÁRIO -->
+        <section class="secao-inicial">
 
-    <input type="text" id="veiculo" name="veiculo" required>
+            <div class="titulo-secao">
 
-    <label for="placa">Placa do veículo:
-    </label>
+                <div>
+                    <h2>Dados do atendimento</h2>
+                    <p>Preencha as informações do serviço realizado.</p>
+                </div>
 
-    <input type="text" id="placa" name="placa">
+                <i class="bi bi-car-front"></i>
 
-    <label for="valor">Valor do serviço (R$)
-    </label>
-
-
-<input type="text" id="valor" name="valor"
-    inputmode="numeric" placeholder="0,00"
-    autocomplete="off" required>
+            </div>
 
 
-<label for="pagamento">Forma de pagamento
-</label>
+            {% if salvo == "1" %}
+            <div class="mensagem-sucesso">
+                <span>
+                    <i class="bi bi-check-circle-fill"></i>
+                    Serviço registrado com sucesso!
+                </span>
 
-<select id="pagamento" name="pagamento" required>
-
-   <option value="">Selecione</option>
-   <option value="dinheiro">Dinheiro</option>
-    <option value="cartao">Cartão</option>
-
-</select>
-
-<label for="caixinha">Caixinha (gorjeta) - R$:
-
-</label>
-
-<input type="text" id="caixinha" name="caixinha"
-    inputmode="numeric" placeholder="0,00"
-    autocomplete="off" value="0,00">
+                <button type="button"
+                    onclick="this.parentElement.remove()"
+                    aria-label="Fechar mensagem">×</button>
+            </div>
+            {% endif %}
 
 
-<button type="submit">Registrar serviço</button>
+            {% if erro %}
+            <p class="mensagem-erro">{{ erro }}</p>
+            {% endif %}
 
 
-</form>
+            <form action="{{ url_for('registrar_servico') }}" method="POST">
 
-<script>
-    // Seleciona os campos de valor
-    const camposValor = [
-        document.getElementById("valor"),
-        document.getElementById("caixinha")
-    ];
+                <label for="veiculo">Nome do veículo:</label>
+                <input type="text" id="veiculo" name="veiculo" required>
 
-    // Aplica a formatação automática em cada campo
-    camposValor.forEach(function(campo) {
 
-        campo.addEventListener("input", function() {
+                <label for="placa">Placa do veículo:</label>
+                <input type="text" id="placa" name="placa">
 
-            // Pega apenas os números digitados
-            let numeros = campo.value.replace(/\D/g, "");
 
-            // Converte para reais e centavos
-            let valor = (Number(numeros) / 100).toFixed(2);
+                <label for="valor">Valor do serviço (R$):</label>
+                <input type="text" id="valor" name="valor"
+                    inputmode="numeric" placeholder="0,00"
+                    autocomplete="off" required>
 
-            // Troca o ponto por vírgula
-            campo.value = valor.replace(".", ",");
+
+                <label for="pagamento">Forma de pagamento:</label>
+
+                <select id="pagamento" name="pagamento" required>
+                    <option value="">Selecione</option>
+                    <option value="dinheiro">Dinheiro</option>
+                    <option value="cartao">Cartão</option>
+                </select>
+
+
+                <label for="caixinha">Caixinha (gorjeta) - R$:</label>
+
+                <input type="text" id="caixinha" name="caixinha"
+                    inputmode="numeric" placeholder="0,00"
+                    autocomplete="off" value="0,00">
+
+
+                <button type="submit">
+                    <i class="bi bi-check-circle"></i>
+                    Registrar serviço
+                </button>
+
+            </form>
+
+        </section>
+
+    </main>
+
+
+    <!-- RODAPÉ -->
+    <footer class="rodape-inicial">
+
+        <i class="bi bi-droplet-fill"></i>
+        <p>Lava-Rápido Império</p>
+
+        <span>Organização e controle em um só lugar.</span>
+
+    </footer>
+
+
+    <script>
+        // Seleciona os campos de valor
+        const camposValor = [
+            document.getElementById("valor"),
+            document.getElementById("caixinha")
+        ];
+
+        // Aplica a formatação automática em cada campo
+        camposValor.forEach(function(campo) {
+
+            campo.addEventListener("input", function() {
+
+                // Pega apenas os números digitados
+                let numeros = campo.value.replace(/\D/g, "");
+
+                // Converte para reais e centavos
+                let valor = (Number(numeros) / 100).toFixed(2);
+
+                // Troca o ponto por vírgula
+                campo.value = valor.replace(".", ",");
+
+            });
 
         });
-
-    });
-
-</script>
-
-</main>
+    </script>
 
 </body>
-
 </html>

@@ -4,150 +4,182 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Registrar despesas</title>
+
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 </head>
 
-<body>
+<body class="pagina-inicial">
 
-    <header>
-        <h1>Lava-Rápido Império</h1>
-        <p>Registrar despesas</p>
+    <header class="cabecalho-inicial">
+
+        <div class="marca">
+            <div class="marca-icone">
+                <i class="bi bi-droplet-fill"></i>
+            </div>
+
+            <h1>Lava-Rápido Império</h1>
+        </div>
+
+        <div class="mensagem-boas-vindas">
+            <h2>Registrar despesas</h2>
+            <p>Controle as saídas e mantenha tudo organizado.</p>
+        </div>
+
     </header>
 
     <main>
 
-       <a href="{{ url_for('inicio') }}" class="botao">Voltar</a>
+        <a href="{{ url_for('inicio') }}" class="botao">
+            <i class="bi bi-arrow-left"></i> Voltar
+        </a>
 
-        <h2>Nova despesa</h2>
+        <section class="secao-inicial">
 
-        {% if salvo == "1" %}
-            <div class="mensagem-sucesso">
-                <span>✓ Despesa registrada com sucesso!</span>
+            <h2 class="titulo-secao">
+                <i class="bi bi-receipt"></i>
+                Nova despesa
+            </h2>
 
-                <button type="button"
-                    onclick="this.parentElement.remove()"
-                    aria-label="Fechar mensagem">×
+            {% if salvo == "1" %}
+                <div class="mensagem-sucesso">
+                    <span>✓ Despesa registrada com sucesso!</span>
+
+                    <button type="button"
+                        onclick="this.parentElement.remove()"
+                        aria-label="Fechar mensagem">×
+                    </button>
+                </div>
+            {% endif %}
+
+            {% if erro %}
+                <p class="mensagem-erro">{{ erro }}</p>
+            {% endif %}
+
+            <!-- Formulário para registrar uma nova despesa -->
+
+            <form action="{{ url_for('registrar_despesas') }}" method="POST">
+
+                <label for="data">Data:</label>
+                <input type="date" id="data" name="data" value="{{ hoje }}" required>
+
+                <label for="categoria">Categoria:</label>
+
+                <select id="categoria" name="categoria" required>
+
+                    <option value="">Selecione uma categoria</option>
+                    <option value="Café">Café</option>
+                    <option value="Produtos">Produtos</option>
+                    <option value="Equipamentos e manutenção">Equipamentos e manutenção</option>
+                    <option value="Diárias">Diárias</option>
+                    <option value="Outros">Outros</option>
+
+                </select>
+
+                <label for="descricao">Descrição:</label>
+                <input type="text" id="descricao" name="descricao"
+                    placeholder="Ex.: compra de pão e café" required>
+
+                <label for="valor">Valor (R$):</label>
+                <input type="text" id="valor" name="valor"
+                    inputmode="numeric" placeholder="0,00"
+                    autocomplete="off" required>
+
+                <button type="submit">
+                    <i class="bi bi-check-circle"></i>
+                    Salvar despesa
                 </button>
 
-            </div>
+            </form>
 
-        {% endif %}
-
-        {% if erro %}
-            <p class="mensagem-erro">{{ erro }}</p>
-        {% endif %}
-
-        <!-- Formulário para registrar uma nova despesa -->
-
-        <form action="{{ url_for('registrar_despesas') }}" method="POST">
-
-            <label for="data">Data:</label>
-
-            <input type="date" id="data" name="data" value="{{ hoje }}" required>
-
-            <label for="categoria">Categoria:</label>
-
-            <select id="categoria" name="categoria" required>
-
-                <option value="">Selecione uma categoria
-                </option>
-
-                <option value="Café">Café
-                </option>
-
-                <option value="Produtos">Produtos
-                </option>
-
-                <option value="Equipamentos e manutenção">Equipamentos e manutenção
-                </option>
-
-                <option value="Diárias">Diárias</option>
-                <option value="Outros">Outros
-                </option>
-
-            </select>
-
-            <label for="descricao">Descrição:
-            </label>
-
-            <input type="text" id="descricao" name="descricao"
-                placeholder="Ex.: compra de pão e café" required>
-
-            <label for="valor">Valor (R$):</label>
-
-            <input type="text" id="valor" name="valor"
-                inputmode="numeric" placeholder="0,00"
-                autocomplete="off" required>
-
-            <button type="submit">Salvar despesa</button>
-
-        </form>
+        </section>
 
         <!-- Fechamento diário recolhível -->
 
-        <details id="fechamento-despesas" class="fechamento-despesas" {% if request.args.get('data') %}open{% endif %}> 
+        <section class="secao-inicial">
 
-            <summary>Fechamento diário de despesas</summary>
+            <h2 class="titulo-secao">
+                <i class="bi bi-calendar-check"></i>
+                Fechamento diário de despesas
+            </h2>
 
-            <div class="conteudo-fechamento">
+            <details id="fechamento-despesas"
+                class="fechamento-despesas"
+                {% if request.args.get('data') %}open{% endif %}>
 
-                <!-- Consulta de despesas por data -->
-                <form method="GET" action="{{ url_for('registrar_despesas') }}#fechamento-despesas">
+                <summary>Consultar fechamento diário</summary>
 
-                    <label for="data-consulta">Consultar despesas por data:</label>
+                <div class="conteudo-fechamento">
 
-                    <input type="date" id="data-consulta"
-                        name="data" value="{{ data_consulta }}" required>
+                    <!-- Consulta de despesas por data -->
 
-                    <button type="submit">Consultar</button>
+                    <form method="GET"
+                        action="{{ url_for('registrar_despesas') }}#fechamento-despesas">
 
-                </form>
+                        <label for="data-consulta">Consultar despesas por data:</label>
 
-                <!-- Total de despesas -->
-                <p>
-                    <strong>Total de despesas:</strong>
-                    R$ {{ "%.2f"|format(total_despesas / 100)|replace(".", ",") }}
-                </p>
+                        <input type="date" id="data-consulta"
+                            name="data" value="{{ data_consulta }}" required>
 
-            </div>
+                        <button type="submit">
+                            <i class="bi bi-search"></i>
+                            Consultar
+                        </button>
 
-            <!-- Lista de despesas cadastradas -->
-           <h2 class="titulo-despesas">Despesas cadastradas</h2>
+                    </form>
 
-            {% if despesas %}
+                    <!-- Total de despesas -->
 
-                <div class="lista-despesas">
-
-                    {% for despesa in despesas %}
-
-                        <div class="despesa-item">
-
-                            <p><strong>Data:</strong> {{ despesa[0] }}</p>
-
-                            <p><strong>Categoria:</strong> {{ despesa[1] }}</p>
-
-                            <p><strong>Descrição:</strong> {{ despesa[2] }}</p>
-
-                            <p class="despesa-valor">
-                                R$ {{ "%.2f"|format(despesa[3] / 100)|replace(".", ",") }}
-                            </p>
-
-                        </div>
-
-                    {% endfor %}
+                    <p>
+                        <strong>Total de despesas:</strong>
+                        R$ {{ "%.2f"|format(total_despesas / 100)|replace(".", ",") }}
+                    </p>
 
                 </div>
 
-            {% else %}
+                <!-- Lista de despesas cadastradas -->
 
-                <p>Nenhuma despesa cadastrada.</p>
+                <h2 class="titulo-despesas">Despesas cadastradas</h2>
 
-            {% endif %}
+                {% if despesas %}
 
-        </details>
+                    <div class="lista-despesas">
+
+                        {% for despesa in despesas %}
+
+                            <div class="despesa-item">
+
+                                <p><strong>Data:</strong> {{ despesa[0] }}</p>
+
+                                <p><strong>Categoria:</strong> {{ despesa[1] }}</p>
+
+                                <p><strong>Descrição:</strong> {{ despesa[2] }}</p>
+
+                                <p class="despesa-valor">
+                                    R$ {{ "%.2f"|format(despesa[3] / 100)|replace(".", ",") }}
+                                </p>
+
+                            </div>
+
+                        {% endfor %}
+
+                    </div>
+
+                {% else %}
+
+                    <p>Nenhuma despesa cadastrada.</p>
+
+                {% endif %}
+
+            </details>
+
+        </section>
 
         <!-- Formatação automática do valor digitado -->
+
         <script>
             const campoValor = document.getElementById("valor");
 

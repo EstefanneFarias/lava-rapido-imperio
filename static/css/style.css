@@ -1,5 +1,8 @@
 
-/* Configurações gerais da página */
+/* =========================================
+   1. CONFIGURAÇÕES GERAIS
+========================================= */
+
 body {
     font-family: Arial, sans-serif;
     background-color: #F1F5F9;
@@ -10,7 +13,16 @@ body {
     line-height: 1.5;
 }
 
-/* Cabeçalho principal */
+main {
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+
+/* =========================================
+   2. CABEÇALHO PRINCIPAL
+========================================= */
+
 header {
     background-color: #173B70;
     color: #FFFFFF;
@@ -19,26 +31,22 @@ header {
     border-radius: 12px;
 }
 
-/* Título do sistema */
 header h1 {
     font-size: 30px;
     margin: 0;
     font-weight: bold;
 }
 
-/* Subtítulo do cabeçalho */
 header p {
     font-size: 18px;
     margin: 8px 0 0;
 }
 
-/* Área principal do sistema */
-main {
-    max-width: 1100px;
-    margin: 0 auto;
-}
 
-/* Cartões das seções */
+/* =========================================
+   3. SEÇÕES E TÍTULOS
+========================================= */
+
 main > section {
     background-color: #FFFFFF;
     padding: 24px;
@@ -47,7 +55,6 @@ main > section {
     border: 1px solid #E2E8F0;
 }
 
-/* Títulos das seções */
 h2 {
     color: #173B70;
     font-size: 24px;
@@ -55,15 +62,16 @@ h2 {
     margin-bottom: 20px;
 }
 
-/* Organização dos cartões de resumo */
-/* Organização dos cartões de resumo */
+
+/* =========================================
+   4. RESUMO DO DIA
+========================================= */
+
 .resumo-cards {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 20px;
 }
-
-/* Aparência individual dos cartões */
 
 .card {
     background-color: #F8FAFC;
@@ -73,14 +81,12 @@ h2 {
     box-sizing: border-box;
 }
 
-/* Títulos dos cartões */
 .card h3 {
     font-size: 19px;
     color: #334155;
     margin-top: 0;
 }
 
-/* Valores apresentados nos cartões */
 .card p {
     font-size: 28px;
     font-weight: bold;
@@ -88,12 +94,17 @@ h2 {
     margin-bottom: 0;
 }
 
-/* Botões e links de ação */
+
+/* =========================================
+   5. BOTÕES E LINKS DE AÇÃO
+========================================= */
+
 button,
 .botao {
     display: inline-flex;
     align-items: center;
     justify-content: center;
+    gap: 10px;
     min-height: 52px;
     background-color: #2563EB;
     color: #FFFFFF;
@@ -105,6 +116,12 @@ button,
     font-family: Arial, sans-serif;
     text-decoration: none;
     cursor: pointer;
+}
+
+/* Tamanho e alinhamento dos ícones */
+.botao i {
+    font-size: 21px;
+    line-height: 1;
 }
 
 /* Efeito ao passar o mouse */
@@ -126,7 +143,22 @@ button:focus-visible,
     outline-offset: 3px;
 }
 
-/* Organização dos formulários */
+
+/* =========================================
+   6. BOTÕES DA PÁGINA INICIAL
+========================================= */
+
+.botoes-operacoes {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+
+/* =========================================
+   7. FORMULÁRIOS E CAMPOS
+========================================= */
+
 form {
     background-color: #FFFFFF;
     padding: 24px;
@@ -136,7 +168,6 @@ form {
     box-sizing: border-box;
 }
 
-/* Identificação dos campos */
 label {
     display: block;
     margin-top: 20px;
@@ -146,7 +177,6 @@ label {
     color: #172B4D;
 }
 
-/* Campos para preenchimento */
 input,
 select {
     box-sizing: border-box;
@@ -165,7 +195,12 @@ form button {
     margin-top: 20px;
 }
 
-/* Remove as setinhas dos campos numéricos no Chrome, Edge e Safari */
+
+/* =========================================
+   8. CAMPOS NUMÉRICOS
+========================================= */
+
+/* Remove as setinhas no Chrome, Edge e Safari */
 input[type="number"]::-webkit-inner-spin-button,
 input[type="number"]::-webkit-outer-spin-button {
     -webkit-appearance: none;
@@ -178,7 +213,11 @@ input[type="number"] {
     appearance: textfield;
 }
 
-/* Mensagem de sucesso */
+
+/* =========================================
+   9. MENSAGEM DE SUCESSO
+========================================= */
+
 .mensagem-sucesso {
     display: flex;
     align-items: center;
@@ -192,7 +231,6 @@ input[type="number"] {
     font-size: 18px;
     font-weight: bold;
 }
-
 
 /* Botão para fechar a notificação */
 .mensagem-sucesso button {
@@ -210,7 +248,11 @@ input[type="number"] {
     color: #14532D;
 }
 
-/* Lista de despesas cadastradas */
+
+/* =========================================
+   10. LISTA DE DESPESAS
+========================================= */
+
 .lista-despesas {
     display: flex;
     flex-direction: column;
@@ -218,7 +260,6 @@ input[type="number"] {
     max-width: 700px;
 }
 
-/* Cartão individual de cada despesa */
 .despesa-item {
     background-color: #FFFFFF;
     border: 1px solid #CBD5E1;
@@ -227,13 +268,27 @@ input[type="number"] {
     padding: 18px 22px;
 }
 
-/* Informações da despesa */
 .despesa-item p {
     margin: 8px 0;
     font-size: 18px;
 }
 
-/* Cartão individual do histórico de serviços */
+.despesa-item .despesa-valor {
+    color: #173B70;
+    font-size: 22px;
+    font-weight: bold;
+    margin-top: 14px;
+}
+
+.titulo-despesas {
+    margin-left: 12px;
+}
+
+
+/* =========================================
+   11. HISTÓRICO DE SERVIÇOS
+========================================= */
+
 .servico-item {
     background-color: #FFFFFF;
     border: 1px solid #CBD5E1;
@@ -243,13 +298,12 @@ input[type="number"] {
     margin-bottom: 16px;
 }
 
-/* Informações do serviço */
 .servico-item p {
     margin: 8px 0;
     font-size: 18px;
 }
 
-/* Destaque para o veículo */
+/* Destaque para o nome do veículo */
 .servico-item .veiculo-nome {
     color: #173B70;
     font-size: 22px;
@@ -257,16 +311,10 @@ input[type="number"] {
 }
 
 
-/* Valor da despesa em destaque */
-.despesa-item .despesa-valor {
-    color: #173B70;
-    font-size: 22px;
-    font-weight: bold;
-    margin-top: 14px;
-}
+/* =========================================
+   12. FECHAMENTO DE DESPESAS RECOLHÍVEL
+========================================= */
 
-
-/* Fechamento diário recolhível */
 .fechamento-despesas {
     max-width: 700px;
     margin: 24px 0;
@@ -275,7 +323,6 @@ input[type="number"] {
     border-radius: 10px;
 }
 
-/* Título clicável do fechamento */
 .fechamento-despesas summary {
     padding: 20px;
     color: #173B70;
@@ -284,41 +331,28 @@ input[type="number"] {
     cursor: pointer;
 }
 
-/* Destaque ao passar o mouse */
 .fechamento-despesas summary:hover {
     background-color: #F1F5F9;
 }
 
-/* Espaçamento do conteúdo aberto */
-.conteudo-fechamento {
+.fechamento-despesas .conteudo-fechamento {
     padding: 0 20px 20px;
 }
 
-/* Espaçamento do título de despesas cadastradas */
-.titulo-despesas {
-    margin-left: 12px;
-}
 
-/* Adaptação dos cartões para telas menores */
-@media (max-width: 600px) {
-    .resumo-cards {
-        grid-template-columns: 1fr;
-    }
-}
-
-/* ========================================
-   ESTILO EXCLUSIVO DO FECHAMENTO DIÁRIO
-======================================== */
+/* =========================================
+   13. FECHAMENTO DIÁRIO
+========================================= */
 
 /* Fundo e organização geral */
 .pagina-fechamento {
-    background: #f5f8fc;
-    color: #102d50;
+    background: #F5F8FC;
+    color: #102D50;
 }
 
 /* Cabeçalho azul-marinho */
 .cabecalho-fechamento {
-    background: linear-gradient(120deg, #06264b, #07529a);
+    background: linear-gradient(120deg, #06264B, #07529A);
     color: white;
     padding: 35px 5%;
     text-align: left;
@@ -339,20 +373,24 @@ input[type="number"] {
 .cabecalho-fechamento span {
     display: block;
     margin-top: 8px;
-    color: #d5e7fa;
+    color: #D5E7FA;
 }
 
-/* Conteúdo principal */
-.conteudo-fechamento {
+/* Conteúdo principal do fechamento diário */
+.pagina-fechamento .conteudo-fechamento {
     max-width: 1100px;
     margin: 30px auto;
     padding: 0 20px;
 }
 
-/* Consulta de data */
+
+/* =========================================
+   14. CONSULTA DE DATA
+========================================= */
+
 .consulta-fechamento {
-    background: #e5f0ff;
-    border: 2px solid #c9e0ff;
+    background: #E5F0FF;
+    border: 2px solid #C9E0FF;
     border-radius: 18px;
     padding: 20px;
     margin-bottom: 25px;
@@ -373,13 +411,13 @@ input[type="number"] {
 
 .consulta-fechamento input {
     padding: 12px;
-    border: 2px solid #c5d7eb;
+    border: 2px solid #C5D7EB;
     border-radius: 10px;
     font-size: 16px;
 }
 
 .consulta-fechamento button {
-    background: #1458cf;
+    background: #1458CF;
     color: white;
     border: none;
     border-radius: 12px;
@@ -389,10 +427,14 @@ input[type="number"] {
     cursor: pointer;
 }
 
-/* Painel verde do total recebido */
+
+/* =========================================
+   15. TOTAL RECEBIDO
+========================================= */
+
 .painel-total-recebido {
-    background: linear-gradient(120deg, #dcfce7, #effff3);
-    border: 2px solid #16a34a;
+    background: linear-gradient(120deg, #DCFCE7, #EFFFF3);
+    border: 2px solid #16A34A;
     border-radius: 20px;
     padding: 25px 35px;
     margin-bottom: 20px;
@@ -403,11 +445,12 @@ input[type="number"] {
     align-items: center;
     gap: 30px;
     padding-bottom: 20px;
-    border-bottom: 2px solid #b5e8c6;
+    border-bottom: 2px solid #B5E8C6;
 }
 
+/* Ícone de confirmação */
 .icone-confirmacao {
-    background: #16a34a;
+    background: #16A34A;
     color: white;
     width: 110px;
     height: 110px;
@@ -421,19 +464,23 @@ input[type="number"] {
 }
 
 .destaque-recebido h2 {
-    color: #15803d;
+    color: #15803D;
     font-size: 25px;
     margin: 0;
 }
 
 .valor-principal {
-    color: #064e2b;
+    color: #064E2B;
     font-size: 55px;
     font-weight: bold;
     margin: 0;
 }
 
-/* Divisão entre dinheiro e cartão */
+
+/* =========================================
+   16. DIVISÃO DOS RECEBIMENTOS
+========================================= */
+
 .divisao-recebimentos {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -449,24 +496,28 @@ input[type="number"] {
 }
 
 .item-recebimento + .item-recebimento {
-    border-left: 2px solid #b5e8c6;
+    border-left: 2px solid #B5E8C6;
 }
 
 .item-recebimento span {
     font-size: 18px;
     font-weight: bold;
-    color: #14532d;
+    color: #14532D;
 }
 
 .item-recebimento strong {
     font-size: 25px;
-    color: #064e2b;
+    color: #064E2B;
 }
 
-/* Painel da caixinha */
+
+/* =========================================
+   17. PAINEL DA CAIXINHA
+========================================= */
+
 .painel-caixinha {
-    background: #dbeafe;
-    border: 2px solid #93c5fd;
+    background: #DBEAFE;
+    border: 2px solid #93C5FD;
     border-radius: 16px;
     padding: 18px 25px;
     margin-bottom: 20px;
@@ -484,17 +535,21 @@ input[type="number"] {
     font-size: 26px;
 }
 
-/* Painel de despesas */
+
+/* =========================================
+   18. PAINEL DE DESPESAS
+========================================= */
+
 .painel-despesas {
     background: white;
-    border: 2px solid #c5dafa;
+    border: 2px solid #C5DAFA;
     border-radius: 18px;
     overflow: hidden;
     margin-bottom: 30px;
 }
 
 .painel-despesas h2 {
-    background: #082e59;
+    background: #082E59;
     color: white;
     padding: 18px 25px;
     margin: 0;
@@ -511,20 +566,24 @@ input[type="number"] {
 }
 
 .linha-despesa {
-    border-bottom: 1px solid #e5eaf0;
+    border-bottom: 1px solid #E5EAF0;
 }
 
 .linha-total-despesas {
-    background: #dbeafe;
+    background: #DBEAFE;
     font-weight: bold;
-    color: #082e59;
+    color: #082E59;
     font-size: 21px;
 }
 
-/* Botão voltar */
+
+/* =========================================
+   19. BOTÃO VOLTAR DO FECHAMENTO
+========================================= */
+
 .voltar-fechamento a {
     display: inline-block;
-    background: #1458cf;
+    background: #1458CF;
     color: white;
     text-decoration: none;
     padding: 16px 28px;
@@ -533,18 +592,45 @@ input[type="number"] {
     font-weight: bold;
 }
 
-/* Adaptação para celular */
+.voltar-fechamento a:hover {
+    background: #1D4ED8;
+}
+
+
+/* =========================================
+   20. RESPONSIVIDADE GERAL
+========================================= */
+
 @media (max-width: 600px) {
 
+    /* Resumo do dia */
+    .resumo-cards {
+        grid-template-columns: 1fr;
+    }
+
+    /* Botões de operações tradicionais */
+    .botoes-operacoes {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .botoes-operacoes .botao {
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    /* Cabeçalho do fechamento */
     .cabecalho-fechamento p {
         font-size: 25px;
     }
 
+    /* Consulta de data */
     .consulta-fechamento form {
         flex-direction: column;
         align-items: stretch;
     }
 
+    /* Total recebido */
     .painel-total-recebido {
         padding: 20px;
     }
@@ -567,21 +653,24 @@ input[type="number"] {
         font-size: 32px;
     }
 
+    /* Divisão de recebimentos */
     .divisao-recebimentos {
         grid-template-columns: 1fr;
     }
 
     .item-recebimento + .item-recebimento {
         border-left: none;
-        border-top: 1px solid #b5e8c6;
+        border-top: 1px solid #B5E8C6;
         padding-top: 15px;
     }
 
+    /* Caixinha */
     .painel-caixinha h2,
     .painel-caixinha strong {
         font-size: 18px;
     }
 
+    /* Despesas */
     .linha-despesa,
     .linha-total-despesas {
         font-size: 15px;
@@ -589,24 +678,421 @@ input[type="number"] {
     }
 }
 
-/* Organização dos botões da página inicial */
-.botoes-operacoes {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 15px;
+
+/* =========================================
+   21. IDENTIDADE VISUAL DA PÁGINA INICIAL
+========================================= */
+
+/* Fundo da página */
+.pagina-inicial {
+    background-color: #F1F5F9;
 }
 
-/* Ajustes dos botões em celulares */
+/* Cabeçalho principal da página inicial */
+.cabecalho-inicial {
+    background: linear-gradient(120deg, #102D50, #173B70, #2563A6);
+    color: #FFFFFF;
+    padding: 30px 5%;
+    border-radius: 14px;
+    margin-bottom: 30px;
+}
+
+/* Identidade do estabelecimento */
+.marca {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+/* Símbolo de gotas */
+.marca-icone {
+    width: 55px;
+    height: 55px;
+    background-color: #FFFFFF;
+    color: #2563EB;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 30px;
+    flex-shrink: 0;
+}
+
+.marca h1 {
+    font-size: 26px;
+    margin: 0;
+}
+
+.marca p {
+    color: #DCEAFE;
+    font-size: 15px;
+    margin: 3px 0 0;
+}
+
+/* Mensagem de boas-vindas */
+.mensagem-boas-vindas {
+    margin-top: 35px;
+}
+
+.mensagem-boas-vindas h2 {
+    color: #FFFFFF;
+    font-size: 30px;
+    margin: 0 0 5px;
+}
+
+.mensagem-boas-vindas p {
+    color: #DCEAFE;
+    margin: 0;
+    font-size: 17px;
+}
+
+
+/* =========================================
+   22. SEÇÕES E TÍTULOS DA PÁGINA INICIAL
+========================================= */
+
+.pagina-inicial .secao-inicial {
+    background-color: #FFFFFF;
+    padding: 26px;
+    margin-bottom: 25px;
+    border-radius: 14px;
+    border: 1px solid #E2E8F0;
+    box-shadow: 0 3px 12px rgba(23, 59, 112, 0.04);
+}
+
+/* Título e descrição das seções */
+.titulo-secao {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+    margin-bottom: 22px;
+}
+
+.titulo-secao h2 {
+    margin: 0;
+    font-size: 23px;
+}
+
+.titulo-secao p {
+    color: #64748B;
+    font-size: 15px;
+    margin: 4px 0 0;
+}
+
+.titulo-secao > i {
+    font-size: 28px;
+    color: #2563EB;
+}
+
+
+/* =========================================
+   23. CARTÕES DO RESUMO DA PÁGINA INICIAL
+========================================= */
+
+.pagina-inicial .resumo-cards {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px;
+}
+
+.pagina-inicial .card {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    padding: 25px;
+    border-radius: 12px;
+    border: 1px solid #E2E8F0;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* Efeito ao passar o mouse */
+.pagina-inicial .card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 16px rgba(23, 59, 112, 0.08);
+}
+
+/* Ícones dos cartões */
+.card-icone {
+    width: 58px;
+    height: 58px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 29px;
+    flex-shrink: 0;
+}
+
+/* Cartão de serviços */
+.card-servicos .card-icone {
+    background-color: #DBEAFE;
+    color: #2563EB;
+}
+
+/* Cartão de recebimentos */
+.card-recebido .card-icone {
+    background-color: #DCFCE7;
+    color: #16A34A;
+}
+
+/* Textos dos cartões */
+.pagina-inicial .card h3 {
+    margin: 0 0 5px;
+    font-size: 16px;
+    color: #64748B;
+}
+
+.pagina-inicial .card p {
+    margin: 0;
+    font-size: 27px;
+    color: #173B70;
+    font-weight: bold;
+}
+
+
+/* =========================================
+   24. CARTÕES DE OPERAÇÕES
+========================================= */
+
+.pagina-inicial .botoes-operacoes {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+}
+
+/* Cartão clicável */
+.cartao-operacao {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    background-color: #F8FAFC;
+    border: 1px solid #E2E8F0;
+    border-radius: 12px;
+    padding: 20px;
+    min-height: 105px;
+    box-sizing: border-box;
+    color: #172B4D;
+    text-decoration: none;
+    transition: transform 0.2s ease, box-shadow 0.2s ease,
+                background-color 0.2s ease;
+}
+
+/* Ícones das operações */
+.operacao-icone {
+    width: 52px;
+    height: 52px;
+    background-color: #DBEAFE;
+    color: #2563EB;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 26px;
+    flex-shrink: 0;
+}
+
+/* Textos das operações */
+.operacao-texto {
+    flex: 1;
+}
+
+.operacao-texto h3 {
+    color: #173B70;
+    font-size: 17px;
+    margin: 0 0 4px;
+}
+
+.operacao-texto p {
+    color: #64748B;
+    font-size: 13px;
+    margin: 0;
+}
+
+/* Seta de indicação */
+.operacao-seta {
+    color: #2563EB;
+    font-size: 21px;
+    flex-shrink: 0;
+}
+
+/* Efeito ao passar o mouse */
+.cartao-operacao:hover {
+    background-color: #EFF6FF;
+    border-color: #93C5FD;
+    transform: translateY(-3px);
+    box-shadow: 0 5px 14px rgba(37, 99, 235, 0.08);
+}
+
+/* Navegação por teclado */
+.cartao-operacao:focus-visible {
+    outline: 4px solid #F59E0B;
+    outline-offset: 3px;
+}
+
+
+/* =========================================
+   25. RODAPÉ DA PÁGINA INICIAL
+========================================= */
+
+.rodape-inicial {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 9px;
+    flex-wrap: wrap;
+    padding: 20px;
+    color: #64748B;
+    font-size: 14px;
+    text-align: center;
+}
+
+.rodape-inicial i {
+    color: #2563EB;
+    font-size: 18px;
+}
+
+.rodape-inicial p {
+    font-weight: bold;
+    color: #173B70;
+    margin: 0;
+}
+
+.rodape-inicial span {
+    width: 100%;
+    font-size: 12px;
+}
+
+
+/* =========================================
+   26. RESPONSIVIDADE DA PÁGINA INICIAL
+========================================= */
+
 @media (max-width: 600px) {
 
-    .botoes-operacoes {
-        flex-direction: column;
-        gap: 15px;
+    /* Cabeçalho */
+    .cabecalho-inicial {
+        padding: 24px 20px;
     }
 
-    .botoes-operacoes .botao {
+    .marca h1 {
+        font-size: 21px;
+    }
+
+    .mensagem-boas-vindas h2 {
+        font-size: 25px;
+    }
+
+    /* Seções */
+    .pagina-inicial .secao-inicial {
+        padding: 18px;
+    }
+
+    /* Cartões do resumo */
+    .pagina-inicial .resumo-cards {
+        grid-template-columns: 1fr;
+    }
+
+    /* Cartões de operações */
+    .pagina-inicial .botoes-operacoes {
+        grid-template-columns: 1fr;
+    }
+
+    .cartao-operacao {
+        min-height: 90px;
+        padding: 16px;
+    }
+
+    .pagina-inicial .card {
+        padding: 20px;
+    }
+
+}
+
+/* =========================================
+   27. FORMULÁRIO DE CADASTRO DE SERVIÇOS
+========================================= */
+
+/* Cartão do formulário */
+.pagina-inicial .secao-inicial form {
+    max-width: 100%;
+    padding: 28px;
+    border: none;
+    background-color: #F8FAFC;
+}
+
+/* Espaçamento dos campos */
+.pagina-inicial .secao-inicial form label {
+    margin-top: 18px;
+    font-size: 16px;
+}
+
+/* Campos de preenchimento */
+.pagina-inicial .secao-inicial form input,
+.pagina-inicial .secao-inicial form select {
+    border: 1px solid #CBD5E1;
+    background-color: #FFFFFF;
+    border-radius: 9px;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* Destaque ao selecionar um campo */
+.pagina-inicial .secao-inicial form input:focus,
+.pagina-inicial .secao-inicial form select:focus {
+    outline: none;
+    border-color: #2563EB;
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12);
+}
+
+/* Botão de cadastrar */
+.pagina-inicial .secao-inicial form button {
+    margin-top: 28px;
+    min-width: 220px;
+}
+
+/* Espaçamento e alinhamento do botão voltar */
+.pagina-inicial main > .botao {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin: 12px 0 24px;
+    padding: 12px 20px;
+}
+
+/* Mensagem de sucesso */
+.pagina-inicial .mensagem-sucesso {
+    margin-bottom: 20px;
+}
+
+/* Ajustes para telas menores */
+@media (max-width: 600px) {
+
+    .pagina-inicial .secao-inicial form {
+        padding: 18px;
+    }
+
+    .pagina-inicial .secao-inicial form button {
         width: 100%;
-        box-sizing: border-box;
     }
 
+}
+
+/* =========================================
+   28. TÍTULOS DA PÁGINA DE DESPESAS
+========================================= */
+
+.pagina-inicial .secao-inicial > .titulo-secao {
+    justify-content: center;
+    text-align: center;
+}
+
+/* =========================================
+   29. TÍTULO DO FECHAMENTO DIÁRIO
+========================================= */
+
+.pagina-fechamento .cabecalho-fechamento h2 {
+    color: #FFFFFF;
+    font-size: 28px;
+    font-weight: 700;
+    margin-top: 20px;
+    margin-bottom: 8px;
 }
