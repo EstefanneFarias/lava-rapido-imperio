@@ -23,32 +23,44 @@
 
             <h2>Resumo do dia</h2>
 
-    <div class="resumo-cards">
-        <div class="card">
-            <h3>Serviços realizados</h3>
-            <p>0</p>
-        </div>
+   <div class="resumo-cards">
 
-        <div class="card">
-            <h3>Total recebido</h3>
-            <p>R$ 0,00</p>
-        </div>
+    <div class="card">
+        <h3>Serviços realizados</h3>
+        <p>{{ quantidade_servicos }}</p>
     </div>
+
+    <div class="card">
+        <h3>Total recebido</h3>
+        <p>R$ {{ '%.2f'|format(total_recebido / 100)|replace('.', ',') }}</p>
+    </div>
+
+</div>
 
         </section>
 
         <section>
             <h2>Operações</h2>
 
+            <div class="botoes-operacoes">
+
             <a href="{{ url_for('registrar_servico') }}" class="botao">
     Registrar serviço
-</a>
+           </a>
 
            <a href="{{ url_for('registrar_despesas') }}" class="botao">
     Registrar despesas
-</a>
+           </a>
 
-            <button type="button">Histórico de serviços</button>
+           <a href="{{ url_for('historico_servicos') }}" class="botao">
+    Histórico de serviços
+         </a>
+
+           <a href="{{ url_for('fechamento_diario') }}" class="botao">
+    Fechamento diário
+           </a>
+            </div>
+
         </section>
 
     </main>

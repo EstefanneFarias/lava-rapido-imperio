@@ -1,0 +1,116 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar serviço</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+    <header>
+        <h1>Lava-Rápido Império</h1>
+        <p>Editar serviço</p>
+    </header>
+
+    <main>
+
+        <a href="{{ url_for('historico_servicos', data=servico[1]) }}" class="botao">
+            Voltar
+        </a>
+
+        <h2>Alterar informações do serviço</h2>
+
+        {% if erro %}
+            <p class="mensagem-erro">{{ erro }}</p>
+        {% endif %}
+
+        <form method="POST">
+
+            <label for="veiculo">Nome do veículo:</label>
+            <input
+                type="text"
+                id="veiculo"
+                name="veiculo"
+                value="{{ servico[2] }}"
+                required
+            >
+
+            <label for="placa">Placa do veículo:</label>
+            <input
+                type="text"
+                id="placa"
+                name="placa"
+                value="{{ servico[3] }}"
+            >
+
+            <label for="valor">Valor do serviço (R$):</label>
+            <input
+                type="text"
+                id="valor"
+                name="valor"
+                inputmode="numeric"
+                autocomplete="off"
+                value="{{ '%.2f'|format(servico[4] / 100)|replace('.', ',') }}"
+                required
+            >
+
+            <label for="pagamento">Forma de pagamento:</label>
+            <select id="pagamento" name="pagamento" required>
+
+                <option value="dinheiro" {% if servico[5] == 'dinheiro' %}selected{% endif %}>
+                    Dinheiro
+                </option>
+
+                <option value="cartao" {% if servico[5] == 'cartao' %}selected{% endif %}>
+                    Cartão
+                </option>
+
+            </select>
+
+            <label for="caixinha">Caixinha (gorjeta) - R$:</label>
+            <input
+                type="text"
+                id="caixinha"
+                name="caixinha"
+                inputmode="numeric"
+                autocomplete="off"
+                value="{{ '%.2f'|format(servico[6] / 100)|replace('.', ',') }}"
+            >
+
+            <button type="submit">Salvar alterações</button>
+
+        </form>
+
+        <script>
+            // Seleciona os campos de valor
+            const camposValor = [
+                document.getElementById("valor"),
+                document.getElementById("caixinha")
+            ];
+
+            // Aplica a formatação automática em cada campo
+            camposValor.forEach(function(campo) {
+
+                campo.addEventListener("input", function() {
+
+                    // Pega apenas os números digitados
+                    let numeros = campo.value.replace(/\D/g, "");
+
+                    // Converte para reais e centavos
+                    let valor = (Number(numeros) / 100).toFixed(2);
+
+                    // Troca o ponto por vírgula
+                    campo.value = valor.replace(".", ",");
+
+                });
+
+            });
+        </script>
+
+    </main>
+
+</body>
+</html>

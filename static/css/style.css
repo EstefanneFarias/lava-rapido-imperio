@@ -1,45 +1,107 @@
 
-/* Estilo geral da página */
+/* Configurações gerais da página */
 body {
     font-family: Arial, sans-serif;
-    background-color: #f4f6f8;
-    color: #222222;
+    background-color: #F1F5F9;
+    color: #172B4D;
     margin: 0;
-    padding: 20px;
+    padding: 24px;
+    font-size: 18px;
+    line-height: 1.5;
 }
 
-/* Cabeçalho da página */
+/* Cabeçalho principal */
 header {
-    background-color: #ffffff;
-    padding: 20px;
+    background-color: #173B70;
+    color: #FFFFFF;
+    padding: 28px;
+    margin-bottom: 28px;
+    border-radius: 12px;
+}
+
+/* Título do sistema */
+header h1 {
+    font-size: 30px;
+    margin: 0;
+    font-weight: bold;
+}
+
+/* Subtítulo do cabeçalho */
+header p {
+    font-size: 18px;
+    margin: 8px 0 0;
+}
+
+/* Área principal do sistema */
+main {
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+/* Cartões das seções */
+main > section {
+    background-color: #FFFFFF;
+    padding: 24px;
+    margin-bottom: 24px;
+    border-radius: 12px;
+    border: 1px solid #E2E8F0;
+}
+
+/* Títulos das seções */
+h2 {
+    color: #173B70;
+    font-size: 24px;
+    margin-top: 0;
     margin-bottom: 20px;
-    border-radius: 8px;
 }
 
-/* Cartões do resumo do dia */
-.card {
-    background-color: #ffffff;
-    padding: 20px;
-    margin-bottom: 15px;
-    border-radius: 8px;
-}
-
-/* Organiza os cartões lado a lado */
+/* Organização dos cartões de resumo */
+/* Organização dos cartões de resumo */
 .resumo-cards {
-    display: flex;
-    gap: 15px;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px;
 }
 
-/* Estilo dos botões e do link com aparência de botão */
+/* Aparência individual dos cartões */
+
+.card {
+    background-color: #F8FAFC;
+    padding: 24px;
+    border-radius: 12px;
+    border: 1px solid #CBD5E1;
+    box-sizing: border-box;
+}
+
+/* Títulos dos cartões */
+.card h3 {
+    font-size: 19px;
+    color: #334155;
+    margin-top: 0;
+}
+
+/* Valores apresentados nos cartões */
+.card p {
+    font-size: 28px;
+    font-weight: bold;
+    color: #173B70;
+    margin-bottom: 0;
+}
+
+/* Botões e links de ação */
 button,
 .botao {
-    display: inline-block;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 52px;
     background-color: #2563EB;
-    color: #ffffff;
+    color: #FFFFFF;
     border: none;
-    padding: 12px 20px;
+    padding: 14px 24px;
     border-radius: 8px;
-    font-size: 16px;
+    font-size: 18px;
+    font-weight: bold;
     font-family: Arial, sans-serif;
     text-decoration: none;
     cursor: pointer;
@@ -51,37 +113,51 @@ button:hover,
     background-color: #1D4ED8;
 }
 
+/* Destaque ao clicar */
 button:active,
 .botao:active {
     background-color: #1E40AF;
-    transform: scale(0.98);
 }
 
+/* Destaque ao navegar pelo teclado */
+button:focus-visible,
+.botao:focus-visible {
+    outline: 4px solid #F59E0B;
+    outline-offset: 3px;
+}
 
-/* Formulário */
+/* Organização dos formulários */
 form {
-    background-color: #ffffff;
-    padding: 20px;
-    border-radius: 8px;
-    max-width: 500px;
+    background-color: #FFFFFF;
+    padding: 24px;
+    border-radius: 12px;
+    border: 1px solid #E2E8F0;
+    max-width: 600px;
+    box-sizing: border-box;
 }
 
-/* Rótulos dos campos */
+/* Identificação dos campos */
 label {
     display: block;
-    margin-top: 15px;
-    margin-bottom: 6px;
+    margin-top: 20px;
+    margin-bottom: 8px;
+    font-size: 18px;
+    font-weight: bold;
+    color: #172B4D;
 }
 
-/* Campos de texto e seleção */
+/* Campos para preenchimento */
 input,
 select {
     box-sizing: border-box;
     width: 100%;
-    padding: 10px;
-    border: 1px solid #cccccc;
-    border-radius: 6px;
-    font-size: 16px;
+    min-height: 52px;
+    padding: 12px;
+    border: 2px solid #CBD5E1;
+    border-radius: 8px;
+    font-size: 18px;
+    background-color: #FFFFFF;
+    color: #172B4D;
 }
 
 /* Botão dentro do formulário */
@@ -100,4 +176,437 @@ input[type="number"]::-webkit-outer-spin-button {
 input[type="number"] {
     -moz-appearance: textfield;
     appearance: textfield;
+}
+
+/* Mensagem de sucesso */
+.mensagem-sucesso {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    background-color: #DCFCE7;
+    color: #166534;
+    border: 1px solid #86EFAC;
+    border-radius: 8px;
+    padding: 16px;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+
+/* Botão para fechar a notificação */
+.mensagem-sucesso button {
+    background: transparent;
+    color: #166534;
+    min-height: auto;
+    padding: 0 6px;
+    font-size: 26px;
+    border: none;
+    cursor: pointer;
+}
+
+.mensagem-sucesso button:hover {
+    background: transparent;
+    color: #14532D;
+}
+
+/* Lista de despesas cadastradas */
+.lista-despesas {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    max-width: 700px;
+}
+
+/* Cartão individual de cada despesa */
+.despesa-item {
+    background-color: #FFFFFF;
+    border: 1px solid #CBD5E1;
+    border-left: 6px solid #2563EB;
+    border-radius: 10px;
+    padding: 18px 22px;
+}
+
+/* Informações da despesa */
+.despesa-item p {
+    margin: 8px 0;
+    font-size: 18px;
+}
+
+/* Cartão individual do histórico de serviços */
+.servico-item {
+    background-color: #FFFFFF;
+    border: 1px solid #CBD5E1;
+    border-left: 6px solid #2563EB;
+    border-radius: 10px;
+    padding: 18px 22px;
+    margin-bottom: 16px;
+}
+
+/* Informações do serviço */
+.servico-item p {
+    margin: 8px 0;
+    font-size: 18px;
+}
+
+/* Destaque para o veículo */
+.servico-item .veiculo-nome {
+    color: #173B70;
+    font-size: 22px;
+    font-weight: bold;
+}
+
+
+/* Valor da despesa em destaque */
+.despesa-item .despesa-valor {
+    color: #173B70;
+    font-size: 22px;
+    font-weight: bold;
+    margin-top: 14px;
+}
+
+
+/* Fechamento diário recolhível */
+.fechamento-despesas {
+    max-width: 700px;
+    margin: 24px 0;
+    background-color: #FFFFFF;
+    border: 1px solid #CBD5E1;
+    border-radius: 10px;
+}
+
+/* Título clicável do fechamento */
+.fechamento-despesas summary {
+    padding: 20px;
+    color: #173B70;
+    font-size: 19px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+/* Destaque ao passar o mouse */
+.fechamento-despesas summary:hover {
+    background-color: #F1F5F9;
+}
+
+/* Espaçamento do conteúdo aberto */
+.conteudo-fechamento {
+    padding: 0 20px 20px;
+}
+
+/* Espaçamento do título de despesas cadastradas */
+.titulo-despesas {
+    margin-left: 12px;
+}
+
+/* Adaptação dos cartões para telas menores */
+@media (max-width: 600px) {
+    .resumo-cards {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* ========================================
+   ESTILO EXCLUSIVO DO FECHAMENTO DIÁRIO
+======================================== */
+
+/* Fundo e organização geral */
+.pagina-fechamento {
+    background: #f5f8fc;
+    color: #102d50;
+}
+
+/* Cabeçalho azul-marinho */
+.cabecalho-fechamento {
+    background: linear-gradient(120deg, #06264b, #07529a);
+    color: white;
+    padding: 35px 5%;
+    text-align: left;
+}
+
+.cabecalho-fechamento h1 {
+    font-size: 22px;
+    margin-bottom: 15px;
+    letter-spacing: 1px;
+}
+
+.cabecalho-fechamento p {
+    font-size: 32px;
+    font-weight: bold;
+    margin: 0;
+}
+
+.cabecalho-fechamento span {
+    display: block;
+    margin-top: 8px;
+    color: #d5e7fa;
+}
+
+/* Conteúdo principal */
+.conteudo-fechamento {
+    max-width: 1100px;
+    margin: 30px auto;
+    padding: 0 20px;
+}
+
+/* Consulta de data */
+.consulta-fechamento {
+    background: #e5f0ff;
+    border: 2px solid #c9e0ff;
+    border-radius: 18px;
+    padding: 20px;
+    margin-bottom: 25px;
+}
+
+.consulta-fechamento form {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.consulta-fechamento label {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.consulta-fechamento input {
+    padding: 12px;
+    border: 2px solid #c5d7eb;
+    border-radius: 10px;
+    font-size: 16px;
+}
+
+.consulta-fechamento button {
+    background: #1458cf;
+    color: white;
+    border: none;
+    border-radius: 12px;
+    padding: 13px 25px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+/* Painel verde do total recebido */
+.painel-total-recebido {
+    background: linear-gradient(120deg, #dcfce7, #effff3);
+    border: 2px solid #16a34a;
+    border-radius: 20px;
+    padding: 25px 35px;
+    margin-bottom: 20px;
+}
+
+.destaque-recebido {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    padding-bottom: 20px;
+    border-bottom: 2px solid #b5e8c6;
+}
+
+.icone-confirmacao {
+    background: #16a34a;
+    color: white;
+    width: 110px;
+    height: 110px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 65px;
+    font-weight: bold;
+    flex-shrink: 0;
+}
+
+.destaque-recebido h2 {
+    color: #15803d;
+    font-size: 25px;
+    margin: 0;
+}
+
+.valor-principal {
+    color: #064e2b;
+    font-size: 55px;
+    font-weight: bold;
+    margin: 0;
+}
+
+/* Divisão entre dinheiro e cartão */
+.divisao-recebimentos {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    padding-top: 20px;
+}
+
+.item-recebimento {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    padding-left: 20px;
+}
+
+.item-recebimento + .item-recebimento {
+    border-left: 2px solid #b5e8c6;
+}
+
+.item-recebimento span {
+    font-size: 18px;
+    font-weight: bold;
+    color: #14532d;
+}
+
+.item-recebimento strong {
+    font-size: 25px;
+    color: #064e2b;
+}
+
+/* Painel da caixinha */
+.painel-caixinha {
+    background: #dbeafe;
+    border: 2px solid #93c5fd;
+    border-radius: 16px;
+    padding: 18px 25px;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.painel-caixinha h2 {
+    margin: 0;
+    font-size: 22px;
+}
+
+.painel-caixinha strong {
+    font-size: 26px;
+}
+
+/* Painel de despesas */
+.painel-despesas {
+    background: white;
+    border: 2px solid #c5dafa;
+    border-radius: 18px;
+    overflow: hidden;
+    margin-bottom: 30px;
+}
+
+.painel-despesas h2 {
+    background: #082e59;
+    color: white;
+    padding: 18px 25px;
+    margin: 0;
+    font-size: 23px;
+}
+
+.linha-despesa,
+.linha-total-despesas {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 25px;
+    font-size: 18px;
+}
+
+.linha-despesa {
+    border-bottom: 1px solid #e5eaf0;
+}
+
+.linha-total-despesas {
+    background: #dbeafe;
+    font-weight: bold;
+    color: #082e59;
+    font-size: 21px;
+}
+
+/* Botão voltar */
+.voltar-fechamento a {
+    display: inline-block;
+    background: #1458cf;
+    color: white;
+    text-decoration: none;
+    padding: 16px 28px;
+    border-radius: 12px;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+/* Adaptação para celular */
+@media (max-width: 600px) {
+
+    .cabecalho-fechamento p {
+        font-size: 25px;
+    }
+
+    .consulta-fechamento form {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .painel-total-recebido {
+        padding: 20px;
+    }
+
+    .destaque-recebido {
+        gap: 15px;
+    }
+
+    .icone-confirmacao {
+        width: 65px;
+        height: 65px;
+        font-size: 40px;
+    }
+
+    .destaque-recebido h2 {
+        font-size: 17px;
+    }
+
+    .valor-principal {
+        font-size: 32px;
+    }
+
+    .divisao-recebimentos {
+        grid-template-columns: 1fr;
+    }
+
+    .item-recebimento + .item-recebimento {
+        border-left: none;
+        border-top: 1px solid #b5e8c6;
+        padding-top: 15px;
+    }
+
+    .painel-caixinha h2,
+    .painel-caixinha strong {
+        font-size: 18px;
+    }
+
+    .linha-despesa,
+    .linha-total-despesas {
+        font-size: 15px;
+        padding: 14px;
+    }
+}
+
+/* Organização dos botões da página inicial */
+.botoes-operacoes {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+/* Ajustes dos botões em celulares */
+@media (max-width: 600px) {
+
+    .botoes-operacoes {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .botoes-operacoes .botao {
+        width: 100%;
+        box-sizing: border-box;
+    }
+
 }

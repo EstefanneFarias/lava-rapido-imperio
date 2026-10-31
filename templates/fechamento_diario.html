@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Fechamento diário</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body class="pagina-fechamento">
+
+    <!-- Cabeçalho do fechamento -->
+    <header class="cabecalho-fechamento">
+        <div>
+            <h1>LAVA-RÁPIDO IMPÉRIO</h1>
+            <p>Fechamento diário</p>
+            <span>Acompanhe a movimentação do dia</span>
+        </div>
+    </header>
+
+    <main class="conteudo-fechamento">
+
+        <!-- Consulta da data -->
+        <section class="consulta-fechamento">
+
+            <form method="GET" action="{{ url_for('fechamento_diario') }}">
+
+                <label for="data">Consultar data:</label>
+
+                <input
+                    type="date"
+                    id="data"
+                    name="data"
+                    value="{{ data_consulta }}"
+                    required
+                >
+
+                <button type="submit">Consultar</button>
+
+            </form>
+
+        </section>
+
+        <!-- Destaque do total recebido -->
+        <section class="painel-total-recebido">
+
+            <div class="destaque-recebido">
+                <div class="icone-confirmacao">✓</div>
+
+                <div>
+                    <h2>TOTAL RECEBIDO</h2>
+
+                    <p class="valor-principal">
+                        R$ {{ '%.2f'|format(total_recebido / 100)|replace('.', ',') }}
+                    </p>
+                </div>
+            </div>
+
+            <div class="divisao-recebimentos">
+
+                <div class="item-recebimento">
+                    <span>Dinheiro</span>
+
+                    <strong>
+                        R$ {{ '%.2f'|format(total_dinheiro / 100)|replace('.', ',') }}
+                    </strong>
+                </div>
+
+                <div class="item-recebimento">
+                    <span>Cartão</span>
+
+                    <strong>
+                        R$ {{ '%.2f'|format(total_cartao / 100)|replace('.', ',') }}
+                    </strong>
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- Caixinha separada -->
+        <section class="painel-caixinha">
+
+            <h2>Caixinha</h2>
+
+            <strong>
+                R$ {{ '%.2f'|format(total_caixinha / 100)|replace('.', ',') }}
+            </strong>
+
+        </section>
+
+        <!-- Despesas registradas -->
+        <section class="painel-despesas">
+
+            <h2>Despesas registradas</h2>
+
+            <div class="linha-despesa">
+                <span>Despesas comuns</span>
+
+                <strong>
+                    R$ {{ '%.2f'|format(despesas_comuns / 100)|replace('.', ',') }}
+                </strong>
+            </div>
+
+            <div class="linha-despesa">
+                <span>Diárias</span>
+
+                <strong>
+                    R$ {{ '%.2f'|format(total_diarias / 100)|replace('.', ',') }}
+                </strong>
+            </div>
+
+            <div class="linha-total-despesas">
+                <span>Total de despesas</span>
+
+                <strong>
+                    R$ {{ '%.2f'|format(total_despesas / 100)|replace('.', ',') }}
+                </strong>
+            </div>
+
+        </section>
+
+        <!-- Voltar para a página inicial -->
+        <div class="voltar-fechamento">
+            <a href="{{ url_for('inicio') }}">← Voltar ao início</a>
+        </div>
+
+    </main>
+
+</body>
+</html>
