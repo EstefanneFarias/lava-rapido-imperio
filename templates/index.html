@@ -1,69 +1,209 @@
 
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lava-Rápido Império</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename= 'css/style.css') }}">
+
+    <title>Lava-Rápido Império | Painel</title>
+
+    <!-- Estilos principais -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+    <!-- Biblioteca de ícones -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
 </head>
-<body>
 
-    <header>
-        <h1>Lava-Rápido Império</h1>
-        <p>Sistema de controle</p>
+<body class="pagina-inicial">
+
+    <!-- CABEÇALHO -->
+    <header class="cabecalho-inicial">
+
+        <div class="marca">
+
+            <div class="marca-icone">
+                <i class="bi bi-droplet-fill"></i>
+            </div>
+
+            <div>
+                <h1>Lava-Rápido Império</h1>
+                <p>Sistema de gerenciamento</p>
+            </div>
+
+        </div>
+
+        <div class="mensagem-boas-vindas">
+
+            <h2>Bem-vindo ao Império!</h2>
+
+            <p>
+                Organização e controle para o seu estabelecimento.
+            </p>
+
+        </div>
+
     </header>
 
+
     <main>
-         <!-- Conteúdo principal da página -->
 
-        <section>
-            <!-- Seção que apresenta o resumo do dia -->
+        <!-- RESUMO DO DIA -->
+        <section class="secao-inicial">
 
-            <h2>Resumo do dia</h2>
+            <div class="titulo-secao">
 
-   <div class="resumo-cards">
+                <div>
+                    <h2>Visão geral do dia</h2>
+                    <p>Acompanhe o movimento do estabelecimento.</p>
+                </div>
 
-    <div class="card">
-        <h3>Serviços realizados</h3>
-        <p>{{ quantidade_servicos }}</p>
-    </div>
+                <i class="bi bi-bar-chart-line"></i>
 
-    <div class="card">
-        <h3>Total recebido</h3>
-        <p>R$ {{ '%.2f'|format(total_recebido / 100)|replace('.', ',') }}</p>
-    </div>
+            </div>
 
-</div>
+
+            <div class="resumo-cards">
+
+                <div class="card card-servicos">
+
+                    <div class="card-icone">
+                        <i class="bi bi-car-front"></i>
+                    </div>
+
+                    <div>
+                        <h3>Serviços realizados</h3>
+                        <p>{{ quantidade_servicos }}</p>
+                    </div>
+
+                </div>
+
+
+                <div class="card card-recebido">
+
+                    <div class="card-icone">
+                        <i class="bi bi-wallet2"></i>
+                    </div>
+
+                    <div>
+                        <h3>Total recebido</h3>
+
+                        <p>
+                            R$ {{ '%.2f'|format(total_recebido / 100)|replace('.', ',') }}
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
 
         </section>
 
-        <section>
-            <h2>Operações</h2>
+
+        <!-- OPERAÇÕES DO SISTEMA -->
+        <section class="secao-inicial">
+
+            <div class="titulo-secao">
+
+                <div>
+                    <h2>Acesso rápido</h2>
+                    <p>Escolha a operação que deseja realizar.</p>
+                </div>
+
+                <i class="bi bi-grid"></i>
+
+            </div>
+
 
             <div class="botoes-operacoes">
 
-            <a href="{{ url_for('registrar_servico') }}" class="botao">
-    Registrar serviço
-           </a>
 
-           <a href="{{ url_for('registrar_despesas') }}" class="botao">
-    Registrar despesas
-           </a>
+                <!-- REGISTRAR SERVIÇO -->
+                <a href="{{ url_for('registrar_servico') }}" class="cartao-operacao">
 
-           <a href="{{ url_for('historico_servicos') }}" class="botao">
-    Histórico de serviços
-         </a>
+                    <div class="operacao-icone">
+                        <i class="bi bi-car-front"></i>
+                    </div>
 
-           <a href="{{ url_for('fechamento_diario') }}" class="botao">
-    Fechamento diário
-           </a>
+                    <div class="operacao-texto">
+                        <h3>Registrar serviço</h3>
+                        <p>Cadastrar um novo veículo.</p>
+                    </div>
+
+                    <i class="bi bi-arrow-right operacao-seta"></i>
+
+                </a>
+
+
+                <!-- REGISTRAR DESPESAS -->
+                <a href="{{ url_for('registrar_despesas') }}" class="cartao-operacao">
+
+                    <div class="operacao-icone">
+                        <i class="bi bi-wallet2"></i>
+                    </div>
+
+                    <div class="operacao-texto">
+                        <h3>Registrar despesas</h3>
+                        <p>Adicionar gastos do estabelecimento.</p>
+                    </div>
+
+                    <i class="bi bi-arrow-right operacao-seta"></i>
+
+                </a>
+
+
+                <!-- HISTÓRICO DE SERVIÇOS -->
+                <a href="{{ url_for('historico_servicos') }}" class="cartao-operacao">
+
+                    <div class="operacao-icone">
+                        <i class="bi bi-card-list"></i>
+                    </div>
+
+                    <div class="operacao-texto">
+                        <h3>Histórico de serviços</h3>
+                        <p>Consultar serviços cadastrados.</p>
+                    </div>
+
+                    <i class="bi bi-arrow-right operacao-seta"></i>
+
+                </a>
+
+
+                <!-- FECHAMENTO DIÁRIO -->
+                <a href="{{ url_for('fechamento_diario') }}" class="cartao-operacao">
+
+                    <div class="operacao-icone">
+                        <i class="bi bi-calendar-check"></i>
+                    </div>
+
+                    <div class="operacao-texto">
+                        <h3>Fechamento diário</h3>
+                        <p>Conferir o movimento do dia.</p>
+                    </div>
+
+                    <i class="bi bi-arrow-right operacao-seta"></i>
+
+                </a>
+
             </div>
 
         </section>
 
     </main>
+
+
+    <!-- RODAPÉ -->
+    <footer class="rodape-inicial">
+
+        <i class="bi bi-droplet-fill"></i>
+
+        <p>Lava-Rápido Império</p>
+
+        <span>Organização e controle em um só lugar.</span>
+
+    </footer>
 
 
 </body>
