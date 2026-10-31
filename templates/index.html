@@ -42,18 +42,24 @@
         <section>
             <h2>Operações</h2>
 
+            <div class="botoes-operacoes">
+
             <a href="{{ url_for('registrar_servico') }}" class="botao">
     Registrar serviço
-</a>
+           </a>
 
            <a href="{{ url_for('registrar_despesas') }}" class="botao">
     Registrar despesas
-</a>
+           </a>
 
            <a href="{{ url_for('historico_servicos') }}" class="botao">
     Histórico de serviços
-</a>
+         </a>
 
+           <a href="{{ url_for('fechamento_diario') }}" class="botao">
+    Fechamento diário
+           </a>
+            </div>
 
         </section>
 

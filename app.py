@@ -310,6 +310,77 @@ def registrar_despesas():
         total_despesas=total_despesas
     )
 
+@app.route("/fechamento-diario")
+def fechamento_diario():
+
+    # Define a data consultada; se nenhuma for informada, usa hoje
+    data_consulta = request.args.get("data", date.today().isoformat())
+
+    with conectar_banco() as conexao:
+        cursor = conexao.cursor()
+
+        # Consulta os valores recebidos em dinheiro e cartão,
+        # além da soma das caixinhas
+        cursor.execute("""
+            SELECT
+                COALESCE(SUM(CASE
+                    WHEN pagamento = 'dinheiro' THEN valor
+                    ELSE 0
+                END), 0),
+
+                COALESCE(SUM(CASE
+                    WHEN pagamento = 'cartao' THEN valor
+                    ELSE 0
+                END), 0),
+
+                COALESCE(SUM(caixinha), 0)
+
+            FROM servicos
+            WHERE data = ?
+        """, (data_consulta,))
+
+        total_dinheiro, total_cartao, total_caixinha = cursor.fetchone()
+
+        # Consulta o total de despesas e o total de diárias
+        cursor.execute("""
+            SELECT
+                COALESCE(SUM(valor), 0),
+
+                COALESCE(SUM(CASE
+                    WHEN categoria = 'Diárias' THEN valor
+                    ELSE 0
+                END), 0)
+
+            FROM despesas
+            WHERE data = ?
+        """, (data_consulta,))
+
+        total_despesas, total_diarias = cursor.fetchone()
+
+    # Calcula as despesas comuns, sem incluir as diárias
+    despesas_comuns = total_despesas - total_diarias
+
+    # Calcula o total recebido pelos serviços
+    total_recebido = total_dinheiro + total_cartao
+
+    # Calcula o resultado do dia, descontando todas as despesas
+    resultado_dia = total_recebido - total_despesas
+
+    # Envia os valores calculados para a página HTML
+    return render_template(
+        "fechamento_diario.html",
+        data_consulta=data_consulta,
+        total_dinheiro=total_dinheiro,
+        total_cartao=total_cartao,
+        total_recebido=total_recebido,
+        total_caixinha=total_caixinha,
+        despesas_comuns=despesas_comuns,
+        total_diarias=total_diarias,
+        total_despesas=total_despesas,
+        resultado_dia=resultado_dia
+    )
+
+
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5000, debug=True)
