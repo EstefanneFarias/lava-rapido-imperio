@@ -18,37 +18,97 @@
 </header>
 
 <main>
-    <a href="{{ url_for('inicio') }}">Voltar</a>
-
+   <a href="{{ url_for('inicio') }}" class="botao">Voltar</a>
     <h2>Novo serviço</h2>
 
+
+    {% if salvo == "1" %}
+    <div class="mensagem-sucesso">
+        <span>✓ Serviço registrado com sucesso!</span>
+        <button type="button"
+            onclick="this.parentElement.remove()"
+            aria-label="Fechar mensagem">×</button>
+    </div>
+{% endif %}
+
+{% if erro %}
+    <p class="mensagem-erro">{{ erro }}</p>
+{% endif %}
+
     
-<form>
-    <label for="veiculo">Nome do veículo:</label>
+<form action="{{ url_for('registrar_servico') }}" method="POST">
+
+
+    <label for="veiculo">Nome do veículo:
+    </label>
+
     <input type="text" id="veiculo" name="veiculo" required>
 
-    <label for="placa">Placa do veículo:</label>
+    <label for="placa">Placa do veículo:
+    </label>
+
     <input type="text" id="placa" name="placa">
 
-    <label for="valor">Valor do serviço (R$)</label>
-<input type="number" id="valor" name="valor" min="0" step="0.01" required>
+    <label for="valor">Valor do serviço (R$)
+    </label>
 
-<label for="pagamento">Forma de pagamento</label>
+
+<input type="text" id="valor" name="valor"
+    inputmode="numeric" placeholder="0,00"
+    autocomplete="off" required>
+
+
+<label for="pagamento">Forma de pagamento
+</label>
+
 <select id="pagamento" name="pagamento" required>
+
    <option value="">Selecione</option>
    <option value="dinheiro">Dinheiro</option>
     <option value="cartao">Cartão</option>
 
 </select>
 
-<label for="caixinha">Caixinha (gorjeta) - R$:</label>
-<input type="number" id="caixinha" name="caixinha" min="0" step="0.01" value="0">
+<label for="caixinha">Caixinha (gorjeta) - R$:
+
+</label>
+
+<input type="text" id="caixinha" name="caixinha"
+    inputmode="numeric" placeholder="0,00"
+    autocomplete="off" value="0,00">
 
 
 <button type="submit">Registrar serviço</button>
 
 
 </form>
+
+<script>
+    // Seleciona os campos de valor
+    const camposValor = [
+        document.getElementById("valor"),
+        document.getElementById("caixinha")
+    ];
+
+    // Aplica a formatação automática em cada campo
+    camposValor.forEach(function(campo) {
+
+        campo.addEventListener("input", function() {
+
+            // Pega apenas os números digitados
+            let numeros = campo.value.replace(/\D/g, "");
+
+            // Converte para reais e centavos
+            let valor = (Number(numeros) / 100).toFixed(2);
+
+            // Troca o ponto por vírgula
+            campo.value = valor.replace(".", ",");
+
+        });
+
+    });
+
+</script>
 
 </main>
 

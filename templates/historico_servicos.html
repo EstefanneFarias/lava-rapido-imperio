@@ -1,0 +1,74 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Histórico de serviços</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+    <header>
+        <h1>Lava-Rápido Império</h1>
+        <p>Histórico de serviços</p>
+    </header>
+
+    <main>
+        <a href="{{ url_for('inicio') }}" class="botao">Voltar</a>
+
+        <h2>Serviços registrados</h2>
+
+        <!-- Formulário para consultar serviços por data -->
+        <form method="GET" action="{{ url_for('historico_servicos') }}">
+            <label for="data-consulta">Consultar serviços por data:</label>
+
+            <input
+                type="date"
+                id="data-consulta"
+                name="data"
+                value="{{ data_consulta }}"
+                required
+            >
+
+            <button type="submit">Consultar</button>
+        </form>
+
+        <!-- Verifica se existem serviços na data consultada -->
+        {% if servicos %}
+
+            {% for servico in servicos %}
+
+                <section class="servico-item">
+
+                    <p class="veiculo-nome">{{ servico[1] }}</p>
+
+                    <p><strong>Placa:</strong> {{ servico[2] }}</p>
+
+                    <p><strong>Data:</strong> {{ servico[0][8:10] }}/{{ servico[0][5:7] }}/{{ servico[0][0:4] }}</p>
+
+                    <p><strong>Valor:</strong> R$ {{ "%.2f"|format(servico[3] / 100)|replace(".", ",") }}</p>
+
+                    <p><strong>Pagamento:</strong> {{ servico[4] }}</p>
+
+                    <p><strong>Caixinha:</strong> R$ {{ "%.2f"|format(servico[5] / 100)|replace(".", ",") }}</p>
+
+
+                    <a href="{{ url_for('editar_servico', id=servico[6]) }}" class="botao"> Editar
+                    </a>
+
+                </section>
+
+            {% endfor %}
+
+        {% else %}
+
+            <p>Nenhum serviço registrado até o momento.</p>
+
+        {% endif %}
+
+    </main>
+
+</body>
+</html>
