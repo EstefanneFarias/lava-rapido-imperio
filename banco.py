@@ -1,6 +1,13 @@
 import sqlite3
+import os
 
-conexao = sqlite3.connect("lava_rapido.db")
+# Define o caminho do banco de dados
+CAMINHO_BANCO = os.environ.get(
+    "DATABASE_PATH",
+    "lava_rapido.db"
+)
+
+conexao = sqlite3.connect(CAMINHO_BANCO)
 
 cursor = conexao.cursor()
 

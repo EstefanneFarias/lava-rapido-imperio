@@ -1,6 +1,147 @@
 
 /* =========================================
-   1. CONFIGURAÇÕES GERAIS
+   1. TELA DE LOGIN
+========================================= */
+
+/* Fundo da tela */
+.pagina-login {
+    min-height: 100vh;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #102D50, #173B70, #2563A6);
+}
+
+/* Cartão de acesso */
+.cartao-login {
+    width: 100%;
+    max-width: 430px;
+    background-color: #FFFFFF;
+    padding: 38px;
+    border-radius: 16px;
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.18);
+    box-sizing: border-box;
+}
+
+/* Identidade visual */
+.login-marca {
+    text-align: center;
+    margin-bottom: 32px;
+}
+
+.login-icone {
+    width: 65px;
+    height: 65px;
+    margin: 0 auto 14px;
+    background-color: #DBEAFE;
+    color: #2563EB;
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 34px;
+}
+
+.login-marca h1 {
+    color: #173B70;
+    font-size: 24px;
+    margin: 0;
+}
+
+.login-marca p {
+    color: #64748B;
+    font-size: 14px;
+    margin-top: 5px;
+}
+
+/* Título de boas-vindas */
+.login-titulo {
+    margin-bottom: 24px;
+}
+
+.login-titulo h2 {
+    color: #173B70;
+    font-size: 25px;
+    margin: 0 0 5px;
+}
+
+.login-titulo p {
+    color: #64748B;
+    font-size: 15px;
+    margin: 0;
+}
+
+/* Formulário */
+.cartao-login form {
+    max-width: 100%;
+    padding: 0;
+    border: none;
+}
+
+/* Campos */
+.cartao-login input {
+    border: 1px solid #CBD5E1;
+    border-radius: 9px;
+    font-size: 16px;
+}
+
+/* Destaque ao selecionar um campo */
+.cartao-login input:focus {
+    outline: none;
+    border-color: #2563EB;
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12);
+}
+
+/* Botão de entrar */
+.cartao-login button {
+    width: 100%;
+    margin-top: 28px;
+}
+
+/* Mensagem de erro */
+.mensagem-erro {
+    background-color: #FEE2E2;
+    color: #991B1B;
+    border: 1px solid #FCA5A5;
+    border-radius: 8px;
+    padding: 13px;
+    margin-bottom: 18px;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+/* Rodapé */
+.login-rodape {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 7px;
+    color: #64748B;
+    font-size: 13px;
+    margin: 25px 0 0;
+}
+
+/* Ajustes para celular */
+@media (max-width: 600px) {
+
+    .pagina-login {
+        padding: 18px;
+    }
+
+    .cartao-login {
+        padding: 28px 22px;
+    }
+
+    .login-marca h1 {
+        font-size: 21px;
+    }
+
+}
+
+
+/* =========================================
+   2. CONFIGURAÇÕES GERAIS
 ========================================= */
 
 body {
@@ -20,7 +161,7 @@ main {
 
 
 /* =========================================
-   2. CABEÇALHO PRINCIPAL
+   3. CABEÇALHO PRINCIPAL
 ========================================= */
 
 header {
@@ -42,9 +183,39 @@ header p {
     margin: 8px 0 0;
 }
 
+/* BOTÃO SAIR */
+
+.cabecalho-inicial {
+    position: relative;
+}
+
+.botao-sair {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+
+    width: 42px;
+    height: 42px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    color: #FFFFFF;
+    font-size: 22px;
+    text-decoration: none;
+
+    border-radius: 8px;
+    transition: background-color 0.2s;
+}
+
+.botao-sair:hover {
+    background-color: rgba(255, 255, 255, 0.18);
+}
+
 
 /* =========================================
-   3. SEÇÕES E TÍTULOS
+   4. SEÇÕES E TÍTULOS
 ========================================= */
 
 main > section {
@@ -64,7 +235,7 @@ h2 {
 
 
 /* =========================================
-   4. RESUMO DO DIA
+   5. RESUMO DO DIA
 ========================================= */
 
 .resumo-cards {
@@ -96,7 +267,7 @@ h2 {
 
 
 /* =========================================
-   5. BOTÕES E LINKS DE AÇÃO
+   6. BOTÕES E LINKS DE AÇÃO
 ========================================= */
 
 button,
@@ -145,7 +316,7 @@ button:focus-visible,
 
 
 /* =========================================
-   6. BOTÕES DA PÁGINA INICIAL
+   7. BOTÕES DA PÁGINA INICIAL
 ========================================= */
 
 .botoes-operacoes {
@@ -156,7 +327,7 @@ button:focus-visible,
 
 
 /* =========================================
-   7. FORMULÁRIOS E CAMPOS
+   8. FORMULÁRIOS E CAMPOS
 ========================================= */
 
 form {
@@ -197,7 +368,7 @@ form button {
 
 
 /* =========================================
-   8. CAMPOS NUMÉRICOS
+   9. CAMPOS NUMÉRICOS
 ========================================= */
 
 /* Remove as setinhas no Chrome, Edge e Safari */
@@ -215,7 +386,7 @@ input[type="number"] {
 
 
 /* =========================================
-   9. MENSAGEM DE SUCESSO
+   10. MENSAGEM DE SUCESSO
 ========================================= */
 
 .mensagem-sucesso {
@@ -250,7 +421,7 @@ input[type="number"] {
 
 
 /* =========================================
-   10. LISTA DE DESPESAS
+   11. LISTA DE DESPESAS
 ========================================= */
 
 .lista-despesas {
@@ -286,7 +457,7 @@ input[type="number"] {
 
 
 /* =========================================
-   11. HISTÓRICO DE SERVIÇOS
+   12. HISTÓRICO DE SERVIÇOS
 ========================================= */
 
 .servico-item {
@@ -312,7 +483,7 @@ input[type="number"] {
 
 
 /* =========================================
-   12. FECHAMENTO DE DESPESAS RECOLHÍVEL
+   13. FECHAMENTO DE DESPESAS RECOLHÍVEL
 ========================================= */
 
 .fechamento-despesas {
@@ -341,7 +512,7 @@ input[type="number"] {
 
 
 /* =========================================
-   13. FECHAMENTO DIÁRIO
+   14. FECHAMENTO DIÁRIO
 ========================================= */
 
 /* Fundo e organização geral */
@@ -385,7 +556,7 @@ input[type="number"] {
 
 
 /* =========================================
-   14. CONSULTA DE DATA
+   15. CONSULTA DE DATA
 ========================================= */
 
 .consulta-fechamento {
@@ -429,9 +600,10 @@ input[type="number"] {
 
 
 /* =========================================
-   15. TOTAL RECEBIDO
+   16. TOTAL RECEBIDO
 ========================================= */
 
+/* Painel principal */
 .painel-total-recebido {
     background: linear-gradient(120deg, #DCFCE7, #EFFFF3);
     border: 2px solid #16A34A;
@@ -478,7 +650,7 @@ input[type="number"] {
 
 
 /* =========================================
-   16. DIVISÃO DOS RECEBIMENTOS
+   17. DIVISÃO DOS RECEBIMENTOS
 ========================================= */
 
 .divisao-recebimentos {
@@ -512,7 +684,7 @@ input[type="number"] {
 
 
 /* =========================================
-   17. PAINEL DA CAIXINHA
+   18. PAINEL DA CAIXINHA
 ========================================= */
 
 .painel-caixinha {
@@ -537,7 +709,7 @@ input[type="number"] {
 
 
 /* =========================================
-   18. PAINEL DE DESPESAS
+   19. PAINEL DE DESPESAS
 ========================================= */
 
 .painel-despesas {
@@ -578,7 +750,7 @@ input[type="number"] {
 
 
 /* =========================================
-   19. BOTÃO VOLTAR DO FECHAMENTO
+   20. BOTÃO VOLTAR DO FECHAMENTO
 ========================================= */
 
 .voltar-fechamento a {
@@ -598,7 +770,7 @@ input[type="number"] {
 
 
 /* =========================================
-   20. RESPONSIVIDADE GERAL
+   21. RESPONSIVIDADE GERAL
 ========================================= */
 
 @media (max-width: 600px) {
@@ -680,7 +852,7 @@ input[type="number"] {
 
 
 /* =========================================
-   21. IDENTIDADE VISUAL DA PÁGINA INICIAL
+   22. IDENTIDADE VISUAL DA PÁGINA INICIAL
 ========================================= */
 
 /* Fundo da página */
@@ -748,9 +920,10 @@ input[type="number"] {
 
 
 /* =========================================
-   22. SEÇÕES E TÍTULOS DA PÁGINA INICIAL
+   23. SEÇÕES E TÍTULOS DA PÁGINA INICIAL
 ========================================= */
 
+/* Seções principais */
 .pagina-inicial .secao-inicial {
     background-color: #FFFFFF;
     padding: 26px;
@@ -787,7 +960,7 @@ input[type="number"] {
 
 
 /* =========================================
-   23. CARTÕES DO RESUMO DA PÁGINA INICIAL
+   24. CARTÕES DO RESUMO DA PÁGINA INICIAL
 ========================================= */
 
 .pagina-inicial .resumo-cards {
@@ -851,7 +1024,7 @@ input[type="number"] {
 
 
 /* =========================================
-   24. CARTÕES DE OPERAÇÕES
+   25. CARTÕES DE OPERAÇÕES
 ========================================= */
 
 .pagina-inicial .botoes-operacoes {
@@ -931,7 +1104,7 @@ input[type="number"] {
 
 
 /* =========================================
-   25. RODAPÉ DA PÁGINA INICIAL
+   26. RODAPÉ DA PÁGINA INICIAL
 ========================================= */
 
 .rodape-inicial {
@@ -964,7 +1137,7 @@ input[type="number"] {
 
 
 /* =========================================
-   26. RESPONSIVIDADE DA PÁGINA INICIAL
+   27. RESPONSIVIDADE DA PÁGINA INICIAL
 ========================================= */
 
 @media (max-width: 600px) {
@@ -1008,8 +1181,9 @@ input[type="number"] {
 
 }
 
+
 /* =========================================
-   27. FORMULÁRIO DE CADASTRO DE SERVIÇOS
+   28. FORMULÁRIO DE CADASTRO DE SERVIÇOS
 ========================================= */
 
 /* Cartão do formulário */
@@ -1076,8 +1250,9 @@ input[type="number"] {
 
 }
 
+
 /* =========================================
-   28. TÍTULOS DA PÁGINA DE DESPESAS
+   29. TÍTULOS DA PÁGINA DE DESPESAS
 ========================================= */
 
 .pagina-inicial .secao-inicial > .titulo-secao {
@@ -1085,8 +1260,9 @@ input[type="number"] {
     text-align: center;
 }
 
+
 /* =========================================
-   29. TÍTULO DO FECHAMENTO DIÁRIO
+   30. TÍTULO DO FECHAMENTO DIÁRIO
 ========================================= */
 
 .pagina-fechamento .cabecalho-fechamento h2 {

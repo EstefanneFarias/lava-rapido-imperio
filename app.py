@@ -1,18 +1,89 @@
 
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, render_template, request, redirect, url_for, session
 from datetime import date
 import sqlite3
 from decimal import Decimal, InvalidOperation
 from contextlib import closing
+import os
+from functools import wraps
+from werkzeug.security import generate_password_hash, check_password_hash
+from dotenv import load_dotenv
+
+
+# Carrega as configurações do arquivo .env
+load_dotenv(override=True)
+import banco
 
 app = Flask(__name__)
 
+# Chave usada para proteger as sessões dos usuários
+app.secret_key = os.environ.get("SECRET_KEY")
+
+
+def login_obrigatorio(funcao):
+
+    @wraps(funcao)
+    def verificar_login(*args, **kwargs):
+
+        # Verifica se existe um usuário autenticado
+        if "usuario_logado" not in session:
+            return redirect(url_for("login"))
+
+        return funcao(*args, **kwargs)
+
+    return verificar_login
+
+@app.route("/login", methods=["GET", "POST"])
+def login():
+
+    if request.method == "POST":
+
+        usuario = request.form["usuario"]
+        senha = request.form["senha"]
+
+        # Verifica se o usuário e a senha estão corretos
+        usuario_correto = os.environ.get("LOGIN_USUARIO")
+        senha_hash = os.environ.get("LOGIN_SENHA_HASH")
+
+        if (
+            usuario == usuario_correto
+            and senha_hash
+            and check_password_hash(senha_hash, senha)
+        ):
+            session["usuario_logado"] = usuario
+
+            return redirect(url_for("inicio"))
+
+        return render_template(
+            "login.html",
+            erro="Usuário ou senha incorretos."
+        )
+
+    return render_template("login.html")
+
+
+@app.route("/sair")
+def sair():
+
+    # Encerra a sessão do usuário
+    session.clear()
+
+    return redirect(url_for("login"))
+
+
+# Define o caminho do banco de dados
+CAMINHO_BANCO = os.environ.get(
+    "DATABASE_PATH",
+    "lava_rapido.db"
+)
+
 
 def conectar_banco():
-    return closing(sqlite3.connect("lava_rapido.db"))
+    return closing(sqlite3.connect(CAMINHO_BANCO))
 
 
 @app.route("/")
+@login_obrigatorio
 def inicio():
 
     # Define a data de hoje no formato usado pelo banco de dados
@@ -39,6 +110,7 @@ def inicio():
 
 
 @app.route("/historico-servicos")
+@login_obrigatorio
 def historico_servicos():
 
     # Define a data consultada; se nenhuma for informada, usa hoje
@@ -65,6 +137,7 @@ def historico_servicos():
 
 
 @app.route("/editar-servico/<int:id>", methods=["GET", "POST"])
+@login_obrigatorio
 def editar_servico(id):
 
     # Busca o serviço pelo ID recebido na URL
@@ -152,6 +225,7 @@ def editar_servico(id):
 
 
 @app.route("/registrar-servico", methods=["GET", "POST"])
+@login_obrigatorio
 def registrar_servico():
     if request.method == "POST":
 
@@ -223,6 +297,7 @@ def converter_valor_centavos(valor_digitado):
 
 
 @app.route("/registrar-despesas", methods=["GET", "POST"])
+@login_obrigatorio
 def registrar_despesas():
     if request.method == "POST":
 
@@ -311,6 +386,7 @@ def registrar_despesas():
     )
 
 @app.route("/fechamento-diario")
+@login_obrigatorio
 def fechamento_diario():
 
     # Define a data consultada; se nenhuma for informada, usa hoje
@@ -383,4 +459,8 @@ def fechamento_diario():
 
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=5000, debug=True)
+    app.run(
+        host="0.0.0.0",
+        port=5000,
+        debug=os.environ.get("FLASK_DEBUG") == "1"
+    )

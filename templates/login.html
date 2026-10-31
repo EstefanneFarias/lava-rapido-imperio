@@ -1,0 +1,78 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Acesso - Lava-Rápido Império</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+</head>
+
+<body class="pagina-login">
+
+    <main class="cartao-login">
+
+        <div class="login-marca">
+            <div class="login-icone">
+                <i class="bi bi-droplet-fill"></i>
+            </div>
+
+            <h1>Lava-Rápido Império</h1>
+            <p>Sistema de gerenciamento</p>
+        </div>
+
+        <div class="login-titulo">
+            <h2>Bem-vindo!</h2>
+            <p>Entre com seus dados para continuar.</p>
+        </div>
+
+        {% if erro %}
+            <div class="mensagem-erro" role="alert">
+                <i class="bi bi-exclamation-circle"></i>
+                {{ erro }}
+            </div>
+        {% endif %}
+
+        <form action="{{ url_for('login') }}" method="POST">
+
+            <label for="usuario">Usuário</label>
+            <input
+                type="text"
+                id="usuario"
+                name="usuario"
+                placeholder="Digite seu usuário"
+                autocomplete="username"
+                required
+                autofocus
+            >
+
+            <label for="senha">Senha</label>
+            <input
+                type="password"
+                id="senha"
+                name="senha"
+                placeholder="Digite sua senha"
+                autocomplete="current-password"
+                required
+            >
+
+            <button type="submit">
+                <i class="bi bi-box-arrow-in-right"></i>
+                Entrar
+            </button>
+
+        </form>
+
+        <p class="login-rodape">
+            <i class="bi bi-shield-lock"></i>
+            Acesso restrito
+        </p>
+
+    </main>
+
+</body>
+</html>
